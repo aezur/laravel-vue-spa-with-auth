@@ -48,7 +48,7 @@ import {defineComponent} from 'vue';
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 export default defineComponent({
-  data() {
+  data(): RegistrationObject {
     return {
       name: '',
       email: '',
