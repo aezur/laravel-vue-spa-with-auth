@@ -29,6 +29,11 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "auth" */ '../views/Register.vue'),
   },
   {
+    path: '/forgot-password',
+    name: 'Forgot Password',
+    component: () => import(/* webpackChunkName: "auth" */ '../views/ForgotPassword.vue'),
+  },
+  {
     path: '/:pathMatch(.*)*',
     name: 'Not Found',
     component: () => import(/* webpackChunkName: "common" */ '../views/NotFound.vue'),
