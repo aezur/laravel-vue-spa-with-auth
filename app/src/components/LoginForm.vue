@@ -36,7 +36,7 @@ import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 import AuthService from '../services/AuthService';
 export default defineComponent({
-  data() {
+  data(): CredentialsWithErrors {
     return {
       email: '',
       password: '',
