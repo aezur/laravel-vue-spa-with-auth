@@ -1,4 +1,45 @@
 /* eslint-disable */
+interface ApiError {
+  name?: string,
+  message?: string,
+  response?: {
+    data?: {
+      errors?: {},
+    },
+    status?: {},
+    headers?: {},
+  },
+  config?: {
+    url?: string,
+  },
+};
+
+interface User {
+  name: string,
+  email: string,
+  verified?: string,
+  isAdmin?: boolean,
+};
+
+interface Credentials {
+  email: string,
+  password: string,
+};
+
+interface CredentialsWithErrors extends Credentials {
+  errors?: any;
+};
+
+interface EmailWithErrors {
+  email: string;
+  errors?: any;
+};
+
+interface RegistrationObject extends CredentialsWithErrors {
+  name: string;
+  password_confirmation: string;
+};
+
 declare module '*.vue' {
   import type { DefineComponent } from 'vue'
   const component: DefineComponent<{}, {}, any>
