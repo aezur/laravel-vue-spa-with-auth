@@ -16,7 +16,7 @@ interface ApiError {
 interface User {
   name: string,
   email: string,
-  verified: string | null,
+  verified?: string,
   isAdmin?: boolean,
 }
 
@@ -30,7 +30,7 @@ interface CredentialsWithErrors extends Credentials {
 }
 
 interface EmailWithErrors {
-  email: any;
+  email: string;
   errors?: any;
 }
 
