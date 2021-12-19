@@ -10,7 +10,7 @@ declare module '@vue/runtime-core' {
   interface AuthState {
     user?: User,
     loading?: boolean,
-    error?: ApiError,
+    error?: any,
   }
 
   interface ComponentCustomProperties {

@@ -19,7 +19,7 @@ const mutations = {
   SET_LOADING(state: AuthState, loading: boolean) {
     state.loading = loading;
   },
-  SET_ERROR(state: AuthState, error: ApiError) {
+  SET_ERROR(state: AuthState, error: any) {
     state.error = error;
   },
 };

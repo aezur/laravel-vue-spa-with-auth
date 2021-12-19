@@ -29,6 +29,11 @@ interface CredentialsWithErrors extends Credentials {
   errors?: any;
 }
 
+interface EmailWithErrors {
+  email: any;
+  errors?: any;
+}
+
 interface RegistrationObject extends CredentialsWithErrors {
   name: string;
   password_confirmation: string;
