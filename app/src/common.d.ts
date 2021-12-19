@@ -24,3 +24,7 @@ interface Credentials {
   email: string,
   password: string,
 }
+
+interface CredentialsWithErrors extends Credentials {
+  errors?: any;
+}
