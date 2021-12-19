@@ -28,3 +28,8 @@ interface Credentials {
 interface CredentialsWithErrors extends Credentials {
   errors?: any;
 }
+
+interface RegistrationObject extends CredentialsWithErrors {
+  name: string;
+  password_confirmation: string;
+}
