@@ -34,7 +34,7 @@ import {getError} from '@/utils/helpers';
 import {defineComponent} from 'vue';
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
-import AuthService from '../services/AuthService';
+import AuthService from '@/services/AuthService';
 export default defineComponent({
   data(): {
     email: string,

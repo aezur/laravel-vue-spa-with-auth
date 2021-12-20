@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import ResetPasswordForm from '@/components/ResetPasswordForm.vue';
+import ResetPasswordForm from '@/components/forms/ResetPasswordForm.vue';
 export default defineComponent({
   components: {
     ResetPasswordForm,

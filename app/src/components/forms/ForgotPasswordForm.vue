@@ -23,10 +23,11 @@
 <script lang="ts">
 import {getError} from '@/utils/helpers';
 import {defineComponent} from 'vue';
-import AuthService from '../services/AuthService';
+import AuthService from '@/services/AuthService';
 export default defineComponent({
   data(): {
     email: string,
+    // eslint-disable-next-line 
     errors: any,
   } {
     return {

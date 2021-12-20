@@ -11,39 +11,39 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/about',
     name: 'about',
-    component: () => import(/* webpackChunkName: "common" */ '../views/About.vue'),
+    component: () => import(/* webpackChunkName: "common" */ '@/views/About.vue'),
     meta: { middleware: [AuthGuard] },
   },
   {
     path: '/login',
     name: 'login',
-    component: () => import(/* webpackChunkName: "auth" */ '../views/Login.vue'),
+    component: () => import(/* webpackChunkName: "auth" */ '@/views/Login.vue'),
   },
   {
     path: '/register',
     name: 'register',
-    component: () => import(/* webpackChunkName: "auth" */ '../views/Register.vue'),
+    component: () => import(/* webpackChunkName: "auth" */ '@/views/Register.vue'),
   },
   {
     path: '/forgot-password',
     name: 'forgot-password',
-    component: () => import(/* webpackChunkName: "auth" */ '../views/ForgotPassword.vue'),
+    component: () => import(/* webpackChunkName: "auth" */ '@/views/ForgotPassword.vue'),
   },
   {
     path: '/reset-password/:token',
     name: 'reset-password',
-    component: () => import(/* webpackChunkName: "auth" */ '../views/ResetPassword.vue'),
+    component: () => import(/* webpackChunkName: "auth" */ '@/views/ResetPassword.vue'),
   },
   {
     path: '/home',
     name: 'home',
-    component: () => import(/* webpackChunkName: "common" */ '../views/Home.vue'),
+    component: () => import(/* webpackChunkName: "common" */ '@/views/Home.vue'),
     meta: { middleware: [AuthGuard] },
   },
   {
     path: '/:pathMatch(.*)*',
     name: 'not-found',
-    component: () => import(/* webpackChunkName: "common" */ '../views/NotFound.vue'),
+    component: () => import(/* webpackChunkName: "common" */ '@/views/NotFound.vue'),
   },
 ];
 

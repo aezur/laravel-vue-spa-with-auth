@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <img alt="404 Error Image" src="../assets/notfound.jpeg">
+    <img alt="404 Error Image" src="@/assets/notfound.jpeg">
   </div>
 </template>
 

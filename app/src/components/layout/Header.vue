@@ -15,7 +15,7 @@
 <script lang="ts">
 import {defineComponent, computed} from 'vue';
 import {useStore} from 'vuex';
-import LogoutButton from '@/components/LogoutButton.vue';
+import LogoutButton from '@/components/buttons/LogoutButton.vue';
 export default defineComponent({
   components: { LogoutButton },
   setup() {
