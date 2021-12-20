@@ -5,7 +5,7 @@ import {
 } from 'vue-router';
 import { Store } from 'vuex';
 
-export default function auth(
+export default function AuthGuard(
   to: RouteLocationNormalized,
   next: NavigationGuardNext,
   store: Store<AuthState>
@@ -14,10 +14,7 @@ export default function auth(
     store.dispatch('auth/getAuthUser').then(() => {
       if (!store.getters['auth/authUser']) {
         next({ name: 'login' })
-      }
-      else next();
+      } else next();
     });
-  } else {
-    next();
-  }
+  } else next();
 }
