@@ -2,7 +2,7 @@
   <div class="home">
     <img alt="Vue logo" src="@/assets/logo.png">
   </div>
-  <p v-if="$props">Thanks for verifying your email!</p>
+  <p v-if="$props?.query?.verified">Thanks for verifying your email!</p>
 </template>
 
 <script lang="ts">
