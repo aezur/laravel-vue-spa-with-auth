@@ -29,14 +29,14 @@ authClient.interceptors.response.use(
 );
 
 export default {
-  async login(payload: Credentials) {
+  async login(payload: { email: string, password: string}) {
     await authClient.get('/sanctum/csrf-cookie');
     return authClient.post('/login', payload);
   },
   logout() {
     return authClient.post('/logout');
   },
-  async forgotPassword(payload: any) {
+  async forgotPassword(payload: { email: string }) {
     await authClient.get('/sanctum/csrf-cookie');
     return authClient.post('/forgot-password', payload);
   },
