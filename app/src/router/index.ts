@@ -2,42 +2,49 @@ import {
   createRouter,
   createWebHashHistory,
   RouteRecordRaw,
-} from 'vue-router'
+} from 'vue-router';
+import AuthGuard from '@/middleware/AuthGuard';
 import store from '@/store';
+import middlewarePipeline from '@/middleware/middlewarePipeline';
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '/',
-    name: 'Home',
-    component: () => import(/* webpackChunkName: "common" */ '../views/Home.vue'),
-    meta: { requiresAuth: true },
-  },
-  {
     path: '/about',
-    name: 'About',
+    name: 'about',
     component: () => import(/* webpackChunkName: "common" */ '../views/About.vue'),
-    meta: { requiresAuth: true },
+    meta: { middleware: [AuthGuard] },
   },
   {
     path: '/login',
-    name: 'Login',
+    name: 'login',
     component: () => import(/* webpackChunkName: "auth" */ '../views/Login.vue'),
   },
   {
     path: '/register',
-    name: 'Register',
+    name: 'register',
     component: () => import(/* webpackChunkName: "auth" */ '../views/Register.vue'),
   },
   {
     path: '/forgot-password',
-    name: 'Forgot Password',
+    name: 'forgot-password',
     component: () => import(/* webpackChunkName: "auth" */ '../views/ForgotPassword.vue'),
   },
   {
+    path: '/reset-password/:token',
+    name: 'reset-password',
+    component: () => import(/* webpackChunkName: "auth" */ '../views/ResetPassword.vue'),
+  },
+  {
+    path: '/home',
+    name: 'home',
+    component: () => import(/* webpackChunkName: "common" */ '../views/Home.vue'),
+    meta: { middleware: [AuthGuard] },
+  },
+  {
     path: '/:pathMatch(.*)*',
-    name: 'Not Found',
+    name: 'not-found',
     component: () => import(/* webpackChunkName: "common" */ '../views/NotFound.vue'),
-  }
+  },
 ];
 
 const router = createRouter({
@@ -46,18 +53,16 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  const authUser = store.getters["auth/authUser"];
-  const reqAuth = to.matched.some((record) => record.meta.requiresAuth);
-  const loginQuery = { path: "/login", query: { redirect: to.fullPath } };
-
-  if (reqAuth && !authUser) {
-    store.dispatch("auth/getAuthUser").then(() => {
-      if (!store.getters["auth/authUser"]) next(loginQuery);
-      else next();
-    });
-  } else {
-    next(); // make sure to always call next()!
+  const middleware = to.meta.middleware as Array<Middleware>;
+  if (!middleware) {
+    return next();
   }
+  const context: Context = { to, from, next, store };
+  return middleware[0](
+    context.to,
+    middlewarePipeline(context, middleware, 1),
+    context.store
+  );
 });
 
 export default router;

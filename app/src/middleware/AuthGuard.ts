@@ -1,9 +1,20 @@
-export default function auth({ to, next, store }: Context): void {
-  const loginQuery = { path: "/login", query: { redirect: to.fullPath } };
+import { AuthState } from 'vue';
+import {
+  NavigationGuardNext,
+  RouteLocationNormalized,
+} from 'vue-router';
+import { Store } from 'vuex';
 
-  if (!store.getters["auth/authUser"]) {
-    store.dispatch("auth/getAuthUser").then(() => {
-      if (!store.getters["auth/authUser"]) next(loginQuery);
+export default function auth(
+  to: RouteLocationNormalized,
+  next: NavigationGuardNext,
+  store: Store<AuthState>
+): void {
+  if (!store.getters['auth/authUser']) {
+    store.dispatch('auth/getAuthUser').then(() => {
+      if (!store.getters['auth/authUser']) {
+        next({ name: 'login' })
+      }
       else next();
     });
   } else {
