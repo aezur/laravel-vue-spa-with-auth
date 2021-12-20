@@ -1,5 +1,5 @@
 <template>
-  <router-link to="/logout" @click="logout">Logout</router-link>
+  <router-link to="#" @click="logout">Logout</router-link>
 </template>
 <script lang="ts">
 import {defineComponent} from 'vue';
@@ -13,11 +13,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style lang="scss" scoped>
-a {
-  padding: 0 1rem 0 1rem;
-  font-weight: bold;
-  color: #929699;
-}
-</style>

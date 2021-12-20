@@ -1,18 +1,17 @@
 <template>
   <nav id="nav">
-    <div v-if="loggedIn" class="navbar">
+    <div v-if="loggedIn" class="nav-container">
+      <img alt="Logo" src="@/assets/logo.png">
+      <router-link class="link" to="/home">Home</router-link>
+      <router-link class="link" to="/about">About</router-link>
+      <LogoutButton />
+    </div>
+    <div v-else class="nav-container">
       <router-link to="/home">
         <img alt="Logo" src="@/assets/logo.png">
       </router-link>
-      <div>
-        <router-link to="/home">Home</router-link> |
-        <router-link to="/about">About</router-link>
-      </div>
-      <LogoutButton />
-    </div>
-    <div v-else class="navbar">
-      <router-link to="/login">Login</router-link> |
-      <router-link to="/register">Register</router-link>
+      <router-link class="link" to="/login">Login</router-link>
+      <router-link class="link" to="/register">Register</router-link>
     </div>
   </nav>
 </template>
@@ -33,8 +32,9 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-nav {
+#nav {
   min-width: 100vw;
+  margin-bottom: 2rem;
   a {
     font-weight: bold;
     color: #929699;
@@ -42,14 +42,19 @@ nav {
       color: #42b983;
     }
   }
-  .navbar {
+  .nav-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     img {
-      width: 1.5rem;
-      height: 1.5rem;
+      width: 2rem;
+      height: 2rem;
+      margin: 0 1rem;
       border-radius: 50%;
+      border: 1px solid black;
+    }
+    a:last-of-type {
+      margin-right: 1rem;
     }
   }
 }
