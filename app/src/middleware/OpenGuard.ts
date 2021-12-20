@@ -13,6 +13,7 @@ export default function OpenGuard(
   if (!store.getters['auth/authUser'] || store.getters['auth/guest']) {
     store.dispatch('auth/getAuthUser').then(() => {
       if (!store.getters['auth/authUser']) {
+        store.dispatch("auth/setGuest", { value: "isGuest" });
         next();
       } else next({ name: 'home' });
     });
