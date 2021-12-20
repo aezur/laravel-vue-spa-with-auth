@@ -9,7 +9,6 @@ export default function middlewarePipeline (
   if(!nextMiddleware){
     return context.next;
   }
-  console.log(context);
   return () => {
     const nextPipeline = middlewarePipeline(
       context, middleware, index + 1
