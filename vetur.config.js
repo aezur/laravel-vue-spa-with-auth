@@ -6,11 +6,10 @@ module.exports = {
     "vetur.experimental.templateInterpolationService": true
   },
   projects: [
-    './app', // Shorthand for specifying only the project root location
-    // {
-    //   root: './app',
-    //   package: './app/package.json',
-    //   tsconfig: './app/tsconfig.json',
-    // }
+    {
+      root: './app',
+      package: './app/package.json',
+      tsconfig: './app/tsconfig.json',
+    }
   ],
 };
