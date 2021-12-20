@@ -4,6 +4,7 @@ import {
   RouteRecordRaw,
 } from 'vue-router';
 import AuthGuard from '@/middleware/AuthGuard';
+import OpenGuard from '@/middleware/OpenGuard';
 import store from '@/store';
 import middlewarePipeline from '@/middleware/middlewarePipeline';
 
@@ -18,21 +19,25 @@ const routes: Array<RouteRecordRaw> = [
     path: '/login',
     name: 'login',
     component: () => import(/* webpackChunkName: "auth" */ '@/views/Login.vue'),
+    meta: { middleware: [OpenGuard] },
   },
   {
     path: '/register',
     name: 'register',
     component: () => import(/* webpackChunkName: "auth" */ '@/views/Register.vue'),
+    meta: { middleware: [OpenGuard] },
   },
   {
     path: '/forgot-password',
     name: 'forgot-password',
     component: () => import(/* webpackChunkName: "auth" */ '@/views/ForgotPassword.vue'),
+    meta: { middleware: [OpenGuard] },
   },
   {
     path: '/reset-password/:token',
     name: 'reset-password',
     component: () => import(/* webpackChunkName: "auth" */ '@/views/ResetPassword.vue'),
+    meta: { middleware: [OpenGuard] },
   },
   {
     path: '/home',
@@ -48,7 +53,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/',
-    redirect: 'home',
+    redirect: store.getters['auth/loggedIn'] ? 'home' : 'login',
   },
 ];
 
