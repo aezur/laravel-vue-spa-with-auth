@@ -29,35 +29,67 @@ authClient.interceptors.response.use(
 );
 
 export default {
-  async login(payload: { email: string, password: string}) {
+  async login(payload: { email: string, password: string})
+  : Promise<void> {
     await authClient.get('/sanctum/csrf-cookie');
     return authClient.post('/login', payload);
   },
-  logout() {
+
+  logout(): Promise<void> {
     return authClient.post('/logout');
   },
-  async forgotPassword(payload: { email: string }) {
+
+  async forgotPassword(payload: { email: string })
+  : Promise<void> {
     await authClient.get('/sanctum/csrf-cookie');
     return authClient.post('/forgot-password', payload);
   },
-  getAuthUser() {
+
+  getAuthUser(): Promise<{ data: { data: User }}> {
     return authClient.get('/api/users/auth');
   },
-  async resetPassword(payload: any) {
+
+  async resetPassword(
+    payload: {
+      email: string,
+      password: string,
+      password_confirmation: string,
+      token: string,
+    }): Promise<void> {
     await authClient.get('/sanctum/csrf-cookie');
     return authClient.post('/reset-password', payload);
   },
-  updatePassword(payload: any) {
+
+  updatePassword(
+    payload: { password: string, current_password: string }
+  ): Promise<void> {
     return authClient.put('/user/password', payload);
   },
-  async registerUser(payload: any) {
+
+  async registerUser(
+    payload: {
+      name: string,
+      email: string,
+      password: string,
+      password_confirmation: string,
+    }
+  ): Promise<void> {
     await authClient.get('/sanctum/csrf-cookie');
     return authClient.post('/register', payload);
   },
-  sendVerification(payload: any) {
+
+  sendVerification(payload: { email: string }): Promise<void> {
     return authClient.post('/email/verification-notification', payload);
   },
-  updateUser(payload: any) {
+
+  updateUser(
+    payload: {
+      name?: string,
+      email?: string,
+      password?: string,
+      password_confirmation?: string,
+    }
+  ): Promise<void> {
     return authClient.put('/user/profile-information', payload);
   },
 };
