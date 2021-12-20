@@ -1,5 +1,5 @@
 <template>
-  <router-link to="#" @click="logout">Logout</router-link>
+  <router-link to="/" @click="logout">Logout</router-link>
 </template>
 <script lang="ts">
 import {defineComponent} from 'vue';
