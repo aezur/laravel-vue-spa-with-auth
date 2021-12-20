@@ -11,9 +11,6 @@
     <button type="submit">
       <span>Request Reset Email</span>
     </button>
-    <div v-if="typeof errors === 'string'">
-      <small>{{errors}}</small>
-    </div>
   </form>
 </div>
 </template>
