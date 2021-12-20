@@ -1,19 +1,16 @@
 <template>
 <div>
   <form @submit.prevent="requestReset">
-
-    <label for="email">Email</label>
-    <input id="email" type="email" placeholder="username@provider.com" v-model="email" />
-    <div v-if="errors?.email">
-      <small v-for="error in errors.email" :key="error">
-        {{error}}
-      </small>
-    </div>
-
+    <BaseInput
+      v-model="email"
+      id="email"
+      type="email"
+      label="Email"
+      :errors="errors?.email"
+    />
     <button type="submit">
-      Request Reset Email
+      <span>Request Reset Email</span>
     </button>
-
     <div v-if="typeof errors === 'string'">
       <small>{{errors}}</small>
     </div>
@@ -21,10 +18,15 @@
 </div>
 </template>
 <script lang="ts">
-import {getError} from '@/utils/helpers';
-import {defineComponent} from 'vue';
 import AuthService from '@/services/AuthService';
+import BaseInput from '@/components/input/BaseInput.vue';
+import {defineComponent} from 'vue';
+import {getError} from '@/utils/helpers';
+
 export default defineComponent({
+  components: {
+    BaseInput,
+  },
   data(): {
     email: string,
     // eslint-disable-next-line 

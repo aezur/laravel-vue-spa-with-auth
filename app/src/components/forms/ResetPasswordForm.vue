@@ -1,48 +1,42 @@
 <template>
 <div>
   <form @submit.prevent="resetPassword">
-    <label for="email">Email</label>
-    <input id="email" type="email" v-model="email" />
-    <div v-if="errors?.email">
-      <small v-for="error in errors.email" :key="error">
-        {{error}}
-      </small>
-    </div>
-
-    <label for="password">New Password</label>
-    <input id="password" type="password" v-model="password" />
-    <div v-if="errors?.password">
-      <small v-for="error in errors.password" :key="error">
-        {{error}}
-      </small>
-    </div>
-
-    <label for="password_confirmation">Confirm New Password</label>
-    <input id="password_confirmation" type="password" v-model="password_confirmation" />
-    <div v-if="errors?.password_confirmation">
-      <small v-for="error in errors.password_confirmation" :key="error">
-        {{error}}
-      </small>
-    </div>
-
+    <BaseInput
+      v-model="email"
+      id="email"
+      type="email"
+      label="Email"
+      :errors="errors?.email"
+    />
+    <BaseInput
+      v-model="password"
+      id="password"
+      type="password"
+      label="New Password"
+      :errors="errors?.password"
+    />
+    <BaseInput
+      v-model="password_confirmation"
+      id="password_confirmation"
+      type="password"
+      label="Confirm New Password"
+      :errors="errors?.password_confirmation"
+    />
     <button type="submit">
       Reset Password
     </button>
-
-    <div v-if="typeof errors === 'string'">
-      <small>{{errors}}</small>
-    </div>
   </form>
 </div>
 </template>
 
 <script lang="ts">
-import { getError } from '@/utils/helpers';
-import { defineComponent } from 'vue';
-import { useRouter } from 'vue-router';
 import AuthService from '@/services/AuthService';
+import BaseInput from '@/components/input/BaseInput.vue';
+import { defineComponent } from 'vue';
+import { getError } from '@/utils/helpers';
 
 export default defineComponent({
+  components: { BaseInput },
   data(): {
       password_confirmation: string,
       password: string,
@@ -67,7 +61,7 @@ export default defineComponent({
           this.password_confirmation,
         token: this.token,
       })
-        .then(() => this.navigateToLogin())
+        .then(() => this.$router.push({ name: 'login' }))
         .catch(err => this.errors = getError(err));
     }
   },
@@ -77,11 +71,5 @@ export default defineComponent({
       return typeof token === 'string' ? token : token[0];
     }
   },
-  setup() {
-    const router = useRouter();
-    return {
-      navigateToLogin: () => router.push({ name: 'login' }),
-    }
-  }
 });
 </script>

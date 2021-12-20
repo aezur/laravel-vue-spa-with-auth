@@ -1,53 +1,48 @@
 <template>
 <div>
   <form @submit.prevent="register">
-
-    <label for="name">Name</label>
-    <input id="name" type="text" v-model="name" />
-    <div v-if="errors?.name">
-      <small v-for="error in errors.name" :key="error">
-        {{error}}
-      </small>
-    </div>
-
-    <label for="email">Email</label>
-    <input id="email" type="email" v-model="email" />
-    <div v-if="errors?.email">
-      <small v-for="error in errors.email" :key="error">
-        {{error}}
-      </small>
-    </div>
-
-    <label for="password">Password</label>
-    <input id="password" type="password" v-model="password" />
-    <div v-if="errors?.password">
-      <small v-for="error in errors.password" :key="error">
-        {{error}}
-      </small>
-    </div>
-
-    <label for="name">Confirm Password</label>
-    <input type="password" v-model="password_confirmation" />
-    <div v-if="errors?.password_confirmation">
-      <small v-for="error in errors.password_confirmation" :key="error">
-        {{error}}
-      </small>
-    </div>
-
+    <BaseInput
+      v-model="name"
+      id="name"
+      type="name"
+      label="Name"
+      :errors="errors?.name"
+    />
+    <BaseInput
+      v-model="email"
+      id="email"
+      type="email"
+      label="Email"
+      :errors="errors?.email"
+    />
+    <BaseInput
+      v-model="password"
+      id="password"
+      type="password"
+      label="Password"
+      :errors="errors?.password"
+    />
+    <BaseInput
+      v-model="password_confirmation"
+      id="password_confirmation"
+      type="password"
+      label="Confirm Password"
+      :errors="errors?.password_confirmation"
+    />
     <button type="submit">
       Submit
     </button>
-
   </form>
 </div>
 </template>
 <script lang="ts">
 import AuthService from '@/services/AuthService';
-import {getError} from '@/utils/helpers';
-import {defineComponent} from 'vue';
-import { useRouter } from 'vue-router';
-import { useStore } from 'vuex';
+import BaseInput from '@/components/input/BaseInput.vue';
+import { defineComponent } from 'vue';
+import { getError } from '@/utils/helpers';
+
 export default defineComponent({
+  components: { BaseInput },
   data(): {
     name: string,
     email: string,
@@ -74,10 +69,10 @@ export default defineComponent({
           password: this.password,
           password_confirmation: this.password_confirmation,
         });
-        const authUser = await this.getUser();
+        const authUser = await this.$store.dispatch('auth/getAuthUser');
         if (authUser) {
-          this.setGuestStatus();
-          this.navigateHome();
+          this.$store.dispatch('auth/setGuest', { value: "isNotGuest" });
+          this.$router.push({ name: 'home' });
         } else {
           const error = Error('Unable to fetch user after registration.');
           error.name = 'Fetch User';
@@ -86,15 +81,6 @@ export default defineComponent({
       } catch (error) {
         this.errors = getError(error);
       }
-    }
-  },
-  setup() {
-    const store = useStore();
-    const router = useRouter();
-    return {
-      setGuestStatus: () => store.dispatch('auth/setGuest', { value: "isNotGuest" }),
-      getUser: async () => await store.dispatch('auth/getAuthUser'),
-      navigateHome: () => router.push({ name: 'home' }),
     }
   },
 });
