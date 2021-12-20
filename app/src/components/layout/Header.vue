@@ -1,7 +1,7 @@
 <template>
   <div id="nav">
     <div v-if="loggedIn">
-      <router-link to="/">Home</router-link> |
+      <router-link to="/home">Home</router-link> |
       <router-link to="/about">About</router-link>
       <LogoutButton />
     </div>
