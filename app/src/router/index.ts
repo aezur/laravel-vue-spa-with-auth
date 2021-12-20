@@ -37,6 +37,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/home',
     name: 'home',
+    props: route => ({ query: route.query }),
     component: () => import(/* webpackChunkName: "common" */ '@/views/Home.vue'),
     meta: { middleware: [AuthGuard] },
   },
@@ -44,6 +45,10 @@ const routes: Array<RouteRecordRaw> = [
     path: '/:pathMatch(.*)*',
     name: 'not-found',
     component: () => import(/* webpackChunkName: "common" */ '@/views/NotFound.vue'),
+  },
+  {
+    path: '/',
+    redirect: 'home',
   },
 ];
 
