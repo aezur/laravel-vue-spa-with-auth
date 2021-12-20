@@ -11,6 +11,7 @@ declare module '@vue/runtime-core' {
     user?: User,
     loading?: boolean,
     error?: any,
+    message?: string,
   }
 
   interface ComponentCustomProperties {

@@ -2,7 +2,7 @@ import router from '@/router';
 import { getError } from '@/utils/helpers';
 import AuthService from '@/services/AuthService';
 import { AuthState } from 'vue';
-import { Dispatch, Commit, ActionContext } from 'vuex';
+import { ActionContext } from 'vuex';
 
 export const namespaced = true;
 
@@ -10,22 +10,29 @@ const state = {
   user: null,
   loading: false,
   error: null,
+  message: null,
 };
 
 const mutations = {
-  SET_USER(state: AuthState, user: User) {
+  SET_USER(state: AuthState, user: User): void {
     state.user = user;
   },
-  SET_LOADING(state: AuthState, loading: boolean) {
+  SET_LOADING(state: AuthState, loading: boolean): void {
     state.loading = loading;
   },
-  SET_ERROR(state: AuthState, error: any) {
+  // eslint-disable-next-line
+  SET_ERROR(state: AuthState, error: any): void {
     state.error = error;
+  },
+  SET_MESSAGE(state: AuthState, message: string): void {
+    state.message = message;
   },
 };
 
 const actions = {
-  logout(context: ActionContext<any, unknown>) {
+  // es-lint-disable-next-line
+  async logout(context: ActionContext<string, unknown>)
+  : Promise<void> {
     return AuthService.logout()
       .then(() => {
         context.commit('SET_USER', null);
@@ -37,48 +44,59 @@ const actions = {
         context.commit('SET_ERROR', getError(error));
       });
   },
-  async getAuthUser(context: ActionContext<any, unknown>) {
+  async getAuthUser(context: ActionContext<string, unknown>)
+  : Promise<User|void> {
     context.commit('SET_LOADING', true);
     try {
       const response = await AuthService.getAuthUser();
       context.commit('SET_USER', response.data.data);
       context.commit('SET_LOADING', false);
       return response.data.data;
-    } catch (error) {
+      // eslint-disable-next-line
+    } catch (error: any) {
+      if (error.response?.status !== 401) {
+        context.commit('SET_ERROR', getError(error));
+      }
       context.commit('SET_LOADING', false);
       context.commit('SET_USER', null);
-      context.commit('SET_ERROR', getError(error));
+      context.dispatch('setGuest', { value: 'isGuest' });
     }
   },
   setGuest(
-    context: ActionContext<any, unknown>,
-    { value }: { value: any }
-  ) {
+    context: ActionContext<string, unknown>,
+    { value }: { value: string }
+  ): void {
     window.localStorage.setItem('guest', value);
   },
 };
 
 const getters = {
-  authUser: (state: AuthState) => {
+  authUser: (state: AuthState): User | undefined => {
     return state.user;
   },
-  isAdmin: (state: AuthState) => {
-    return state.user ? state.user.isAdmin : false;
+  isAdmin: (state: AuthState): boolean => {
+    return state.user ? !!state.user.isAdmin : false;
   },
-  error: (state: AuthState) => {
+  // eslint-disable-next-line
+  error: (state: AuthState): any => {
     return state.error;
   },
-  loading: (state: AuthState) => {
+  message: (state: AuthState): string | undefined => {
+    return state.message;
+  },
+  loading: (state: AuthState)
+  : boolean | undefined => {
     return state.loading;
   },
-  loggedIn: (state: AuthState) => {
+  loggedIn: (state: AuthState): boolean => {
     return !!state.user;
   },
-  guest: () => {
+  guest: (): boolean => {
     const storageItem = window.localStorage.getItem('guest');
     if (!storageItem) return false;
     if (storageItem === 'isGuest') return true;
-    if (storageItem === 'isNotGuest') return false;
+    else if (storageItem === 'isNotGuest') return false;
+    else return false;
   },
 };
 
