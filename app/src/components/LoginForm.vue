@@ -36,7 +36,12 @@ import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 import AuthService from '../services/AuthService';
 export default defineComponent({
-  data(): CredentialsWithErrors {
+  data(): {
+    email: string,
+    password: string,
+    // eslint-disable-next-line 
+    errors: any,
+  } {
     return {
       email: '',
       password: '',
@@ -71,7 +76,7 @@ export default defineComponent({
     return {
       setGuestStatus: () => store.dispatch('auth/setGuest', { value: "isNotGuest" }),
       getUser: async () => await store.dispatch('auth/getAuthUser'),
-      navigateHome: () => router.push('/'),
+      navigateHome: () => router.push({ name: 'home' }),
     }
   },
 });

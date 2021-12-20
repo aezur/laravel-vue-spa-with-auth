@@ -48,7 +48,14 @@ import {defineComponent} from 'vue';
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 export default defineComponent({
-  data(): RegistrationObject {
+  data(): {
+    name: string,
+    email: string,
+    password: string,
+    password_confirmation: string,
+    // eslint-disable-next-line 
+    errors: any,
+  } {
     return {
       name: '',
       email: '',
@@ -87,7 +94,7 @@ export default defineComponent({
     return {
       setGuestStatus: () => store.dispatch('auth/setGuest', { value: "isNotGuest" }),
       getUser: async () => await store.dispatch('auth/getAuthUser'),
-      navigateHome: () => router.push('/'),
+      navigateHome: () => router.push({ name: 'home' }),
     }
   },
 });

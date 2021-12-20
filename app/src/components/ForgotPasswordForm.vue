@@ -25,7 +25,10 @@ import {getError} from '@/utils/helpers';
 import {defineComponent} from 'vue';
 import AuthService from '../services/AuthService';
 export default defineComponent({
-  data(): EmailWithErrors {
+  data(): {
+    email: string,
+    errors: any,
+  } {
     return {
       email: '',
       errors: {},
