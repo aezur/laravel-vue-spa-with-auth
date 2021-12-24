@@ -10,12 +10,14 @@ export default function OpenGuard(
   next: NavigationGuardNext,
   store: Store<AuthState>
 ): void {
-  if (!store.getters['auth/authUser'] || store.getters['auth/guest']) {
+  if (!store.getters['auth/guest']) {
     store.dispatch('auth/getAuthUser').then(() => {
-      if (!store.getters['auth/authUser']) {
-        store.dispatch("auth/setGuest", { value: "isGuest" });
+      if (store.getters['auth/authUser']) {
+        next({ name: 'home' });
+      } else {
+        store.dispatch('auth/setGuest', { value: 'isGuest' });
         next();
-      } else next({ name: 'home' });
+      }
     });
-  } else next({ name: 'home' });
+  } else next();
 }
