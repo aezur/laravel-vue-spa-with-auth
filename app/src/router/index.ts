@@ -7,6 +7,7 @@ import AuthGuard from '@/middleware/AuthGuard';
 import OpenGuard from '@/middleware/OpenGuard';
 import store from '@/store';
 import middlewarePipeline from '@/middleware/middlewarePipeline';
+import AdminGuard from '@/middleware/AdminGuard';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -45,6 +46,12 @@ const routes: Array<RouteRecordRaw> = [
     props: route => ({ query: route.query }),
     component: () => import(/* webpackChunkName: "common" */ '@/views/Home.vue'),
     meta: { middleware: [AuthGuard] },
+  },
+  {
+    path: '/users',
+    name: 'users',
+    component: () => import(/* webpackChunkName: "common" */ '@/views/Users.vue'),
+    meta: { middleware: [AuthGuard, AdminGuard] },
   },
   {
     path: '/:pathMatch(.*)*',
