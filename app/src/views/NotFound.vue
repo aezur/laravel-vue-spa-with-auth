@@ -7,5 +7,6 @@
 <style lang="scss" scoped>
 img {
   border-radius: 50%;
+  max-width: 100%;
 }
 </style>
