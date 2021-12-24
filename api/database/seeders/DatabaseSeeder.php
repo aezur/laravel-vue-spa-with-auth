@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Aezur',
                 'email' => 'test@test.com',
                 'email_verified_at' => null,
-                'password' => Hash::make('testing')
+                'password' => Hash::make('Testing123')
             ]
         );
     }
