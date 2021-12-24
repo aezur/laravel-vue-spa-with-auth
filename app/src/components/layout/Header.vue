@@ -24,8 +24,11 @@
       <li v-if="loggedIn">
         <router-link to="/about">About</router-link>
       </li>
+      <li v-if="isAdmin">
+        <router-link to="/users">Users</router-link>
+      </li>
       <li v-if="loggedIn">
-        <router-link to="/" @click="logout">Logout</router-link>
+        <router-link to="/" @click="closeMenuAndLogout">Logout</router-link>
       </li>
     </ul>
   </nav>
@@ -36,21 +39,20 @@
 import {defineComponent, computed} from 'vue';
 import {useStore} from 'vuex';
 export default defineComponent({
-  data() {
-    return {
-      menuIsOpen: false,
-    };
-  },
   methods: {
-    toggleMenu() {
-      this.menuIsOpen = !this.menuIsOpen;
-    }
+    closeMenuAndLogout() {
+      this.toggleMenu();
+      this.logout();
+    },
   },
   setup() {
     const store = useStore();
     return {
       loggedIn: computed(() => store.getters['auth/loggedIn']),
-      logout: async () => await store.dispatch('auth/logout')
+      isAdmin: computed(() => store.getters['auth/isAdmin']),
+      menuIsOpen: computed(() => store.getters['ui/menuIsOpen']),
+      logout: async () => await store.dispatch('auth/logout'),
+      toggleMenu: async () => await store.dispatch('ui/toggleMenu'),
     };
   },
 });

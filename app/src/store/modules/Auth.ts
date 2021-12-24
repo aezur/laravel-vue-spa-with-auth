@@ -3,29 +3,17 @@ import { getError } from '@/utils/helpers';
 import AuthService from '@/services/AuthService';
 import { AuthState } from 'vue';
 import { ActionContext } from 'vuex';
+import store from '..';
 
 export const namespaced = true;
 
 const state = {
   user: null,
-  loading: false,
-  error: null,
-  message: null,
 };
 
 const mutations = {
   SET_USER(state: AuthState, user: User): void {
     state.user = user;
-  },
-  SET_LOADING(state: AuthState, loading: boolean): void {
-    state.loading = loading;
-  },
-  // eslint-disable-next-line
-  SET_ERROR(state: AuthState, error: any): void {
-    state.error = error;
-  },
-  SET_MESSAGE(state: AuthState, message: string): void {
-    state.message = message;
   },
 };
 
@@ -41,23 +29,23 @@ const actions = {
           router.push({ path: '/login' });
       })
       .catch((error) => {
-        context.commit('SET_ERROR', getError(error));
+        store.commit('ui/SET_ERROR', getError(error));
       });
   },
   async getAuthUser(context: ActionContext<string, unknown>)
   : Promise<User|void> {
-    context.commit('SET_LOADING', true);
+    store.commit('ui/SET_LOADING', true);
     try {
       const response = await AuthService.getAuthUser();
       context.commit('SET_USER', response.data.data);
-      context.commit('SET_LOADING', false);
+      store.commit('ui/SET_LOADING', false);
       return response.data.data;
       // eslint-disable-next-line
     } catch (error: any) {
       if (error.response?.status !== 401) {
-        context.commit('SET_ERROR', getError(error));
+        store.commit('ui/SET_ERROR', getError(error));
       }
-      context.commit('SET_LOADING', false);
+      store.commit('ui/SET_LOADING', false);
       context.commit('SET_USER', null);
       context.dispatch('setGuest', { value: 'isGuest' });
     }
@@ -76,17 +64,6 @@ const getters = {
   },
   isAdmin: (state: AuthState): boolean => {
     return state.user ? !!state.user.isAdmin : false;
-  },
-  // eslint-disable-next-line
-  error: (state: AuthState): any => {
-    return state.error;
-  },
-  message: (state: AuthState): string | undefined => {
-    return state.message;
-  },
-  loading: (state: AuthState)
-  : boolean | undefined => {
-    return state.loading;
   },
   loggedIn: (state: AuthState): boolean => {
     return !!state.user;
