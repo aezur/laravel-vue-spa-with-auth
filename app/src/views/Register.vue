@@ -1,7 +1,7 @@
 <template>
   <RegistrationForm />
   <div>
-    <span>Already have an account?</span>
+    <span>Already have an account? </span>
     <router-link to="/login">Login!</router-link>
   </div>
 </template>
