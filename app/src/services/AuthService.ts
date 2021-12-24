@@ -86,8 +86,6 @@ export default {
     payload: {
       name?: string,
       email?: string,
-      password?: string,
-      password_confirmation?: string,
     }
   ): Promise<void> {
     return authClient.put('/user/profile-information', payload);
