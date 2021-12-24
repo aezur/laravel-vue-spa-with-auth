@@ -1,7 +1,5 @@
 <template>
-  <header>
-    <Header />
-  </header>
+  <Header />
   <body>
     <main>
       <router-view />
@@ -36,8 +34,10 @@ body {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
+}
+
+main {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -53,14 +53,8 @@ form {
       margin-bottom: 2rem;
     }
   }
-  @media screen and (max-width: 400px) {
-    padding: 0 1rem;
-  }
-  @media screen and (min-width: 800px) {
-    padding: 0 3rem;
-  }
-  @media screen and (min-width: 1200px) {
-    padding: 0 10rem;
+  button[type="submit"] {
+    margin-bottom: 1rem;
   }
 }
 </style>
