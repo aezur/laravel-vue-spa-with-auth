@@ -22,6 +22,7 @@ export default class App extends Vue {}
 </script>
 
 <style lang="scss">
+@import '@/assets/scss/vars';
 html,
 body {
   width: 100%;
@@ -34,7 +35,7 @@ body {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+  color: $fontColor;
 }
 
 main {
