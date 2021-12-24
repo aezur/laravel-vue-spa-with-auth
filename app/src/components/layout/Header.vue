@@ -4,16 +4,16 @@
   <nav id="nav">
     <ul>
       <li v-if="!loggedIn">
-        <router-link class="link" to="/login">Login</router-link>
+        <router-link to="/login">Login</router-link>
       </li>
       <li v-if="!loggedIn">
-        <router-link class="link" to="/register">Register</router-link>
+        <router-link to="/register">Register</router-link>
       </li>
       <li v-if="loggedIn">
-        <router-link class="link" to="/home">Home</router-link>
+        <router-link to="/home">Home</router-link>
       </li>
       <li v-if="loggedIn">
-        <router-link class="link" to="/about">About</router-link>
+        <router-link to="/about">About</router-link>
       </li>
       <li v-if="loggedIn">
         <LogoutButton />
@@ -39,6 +39,9 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+.router-link-active {
+  font-weight: bold;
+}
 .logo {
   float: left;
   display: inline;
@@ -54,6 +57,11 @@ export default defineComponent({
     align-items: center;
     justify-content: end;
     gap: 2rem;
+    li {
+      a {
+        text-decoration: none;
+      }
+    }
     li:last-of-type {
       margin-right: 1rem;
     }
