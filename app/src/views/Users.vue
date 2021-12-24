@@ -6,7 +6,9 @@
 import { defineComponent } from 'vue';
 export default defineComponent({
   async mounted() {
-    await this.$store.dispatch('admin/getUsers');
+    if (!this.$store.getters['admin/users']) {
+      await this.$store.dispatch('admin/getUsers');
+    }
   },
 });
 </script>

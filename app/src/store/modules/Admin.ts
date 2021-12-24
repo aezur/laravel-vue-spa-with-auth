@@ -20,19 +20,17 @@ const actions = {
   // es-lint-disable-next-line
   async getUsers(context: ActionContext<string, unknown>)
   : Promise<User[] | void> {
-    if (!context.getters['users']) {
-      store.commit('ui/SET_LOADING', true);
-      try {
-        const response = await AdminService.getUsers();
-        context.commit('SET_USERS', response.data.data);
-        store.commit('ui/SET_LOADING', false);
-        return response.data.data;
-        // eslint-disable-next-line
-      } catch (error: any) {
-        store.commit('ui/SET_ERROR', getError(error));
-        store.commit('ui/SET_LOADING', false);
-        context.commit('SET_USERS', null);
-      }
+    store.commit('ui/SET_LOADING', true);
+    try {
+      const response = await AdminService.getUsers();
+      context.commit('SET_USERS', response.data.data);
+      store.commit('ui/SET_LOADING', false);
+      return response.data.data;
+      // eslint-disable-next-line
+    } catch (error: any) {
+      store.commit('ui/SET_ERROR', getError(error));
+      store.commit('ui/SET_LOADING', false);
+      context.commit('SET_USERS', null);
     }
   },
 };
