@@ -9,7 +9,7 @@
       :errors="errors?.email"
     />
     <button type="submit">
-      <span>Request Reset Email</span>
+      <span>Request Reset</span>
     </button>
   </form>
 </div>
