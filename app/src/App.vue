@@ -12,6 +12,7 @@
     :error="$store.getters['ui/error']"
   />
   <BaseModal v-if="showModal"></BaseModal>
+  <Loader v-if="showLoader"></Loader>
 </template>
 
 <script lang="ts">
@@ -20,12 +21,14 @@ import { useStore } from 'vuex';
 import Header from '@/components/layout/Header.vue';
 import FlashMessage from '@/components/layout/FlashMessage.vue';
 import BaseModal from '@/components/layout/BaseModal.vue';
+import Loader from '@/components/layout/Loader.vue';
 export default defineComponent({
-  components: { Header, FlashMessage, BaseModal },
+  components: { Header, FlashMessage, BaseModal, Loader },
   setup() {
     const store = useStore();
     return {
       showModal: computed(() => store.getters['ui/modalIsOpen']),
+      showLoader: computed(() => store.getters['ui/loading']),
     };
   },
 });
