@@ -11,14 +11,24 @@
     :message="$store.getters['ui/message']"
     :error="$store.getters['ui/error']"
   />
+  <BaseModal v-if="showModal"></BaseModal>
 </template>
 
 <script lang="ts">
-import { Options, Vue } from 'vue-class-component';
+import { computed, defineComponent } from 'vue';
+import { useStore } from 'vuex';
 import Header from '@/components/layout/Header.vue';
 import FlashMessage from '@/components/layout/FlashMessage.vue';
-@Options({ components: { Header, FlashMessage } })
-export default class App extends Vue {}
+import BaseModal from '@/components/layout/BaseModal.vue';
+export default defineComponent({
+  components: { Header, FlashMessage, BaseModal },
+  setup() {
+    const store = useStore();
+    return {
+      showModal: computed(() => store.getters['ui/modalIsOpen']),
+    };
+  },
+});
 </script>
 
 <style lang="scss">

@@ -21,6 +21,9 @@ declare module '@vue/runtime-core' {
 
   interface UIState {
     menuIsOpen?: boolean,
+    modalIsOpen?: boolean,
+    modalTitle?: string,
+    modalText?: string,
     loading?: boolean,
     error?: any,
     message?: string,
@@ -43,6 +46,10 @@ declare module '@vue/runtime-core' {
     total: number,
   }
 
+  interface ModalParams {
+    title: string;
+    text: string;
+  }
 
   interface ComponentCustomProperties {
     $store: Store<State>

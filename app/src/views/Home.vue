@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="@/assets/logo.png">
+    <button @click="openModal">Open Modal</button>
   </div>
   <p v-if="$props?.query?.verified">Thanks for verifying your email!</p>
 </template>
@@ -9,6 +9,14 @@
 import {defineComponent} from 'vue';
 export default defineComponent({
   props: ['query'],
+  methods: {
+    openModal() {
+      this.$store.dispatch('ui/openModal', {
+        title: 'Test Modal',
+        text: 'This is a test modal!'
+      })
+    }
+  },
 });
 </script>
 
