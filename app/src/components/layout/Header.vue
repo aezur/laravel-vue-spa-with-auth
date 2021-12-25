@@ -16,22 +16,22 @@
       />
 
       <ul :class="menuIsOpen ? '' : 'hide-menu'">
-        <li v-if="!loggedIn" @click="toggleMenu">
+        <li v-if="!loggedIn" @click="closeMenu">
           <router-link to="/login">Login</router-link>
         </li>
-        <li v-if="!loggedIn" @click="toggleMenu">
+        <li v-if="!loggedIn" @click="closeMenu">
           <router-link to="/register">Register</router-link>
         </li>
-        <li v-if="loggedIn" @click="toggleMenu">
+        <li v-if="loggedIn" @click="closeMenu">
           <router-link to="/home">Home</router-link>
         </li>
-        <li v-if="loggedIn" @click="toggleMenu">
+        <li v-if="loggedIn" @click="closeMenu">
           <router-link to="/about">About</router-link>
         </li>
-        <li v-if="isAdmin" @click="toggleMenu">
+        <li v-if="isAdmin" @click="closeMenu">
           <router-link to="/users">Users</router-link>
         </li>
-        <li v-if="loggedIn" @click="toggleMenu">
+        <li v-if="loggedIn" @click="closeMenu">
           <router-link to="/" @click="logout">Logout</router-link>
         </li>
       </ul>
@@ -49,7 +49,12 @@ export default defineComponent({
       loggedIn: computed(() => store.getters["auth/loggedIn"]),
       isAdmin: computed(() => store.getters["auth/isAdmin"]),
       menuIsOpen: computed(() => store.getters["ui/menuIsOpen"]),
-      logout: async () => await store.dispatch("auth/logout"),
+      logout: () => store.dispatch("auth/logout"),
+      closeMenu: () => {
+        if (store.getters["ui/menuIsOpen"]) {
+          store.dispatch("ui/closeMenu");
+        }
+      },
       toggleMenu: async () => await store.dispatch("ui/toggleMenu"),
     };
   },
@@ -59,7 +64,11 @@ export default defineComponent({
 <style lang="scss" scoped>
 @import '@/assets/scss/vars';
 header {
-  height: 3.5rem;
+  height: 3rem;
+  background-color: $bgColor;
+  position: sticky;
+	top: 0;
+	width: 100%;
   .router-link-active {
     font-weight: bold;
     text-decoration: underline !important;
@@ -92,8 +101,7 @@ header {
       height: 1.5rem;
     }
   }
-}
-#nav {
+  #nav {
   ul {
     transition: transform ease-in-out 350ms;
     list-style-type: none;
@@ -102,6 +110,11 @@ header {
     justify-content: flex-end;
     overflow: hidden;
     gap: 2rem;
+    background-color: $bgColor;
+    &.hide-menu {
+      margin: 0;
+      padding: .5rem;
+    }
     li {
       a {
         text-decoration: none;
@@ -128,5 +141,6 @@ header {
       }
     }
   }
+}
 }
 </style>

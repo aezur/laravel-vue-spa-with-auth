@@ -30,6 +30,12 @@ const actions = {
   toggleMenu(context: ActionContext<string, unknown>) {
     context.commit('SET_MENU_STATE', !context.getters['menuIsOpen'])
   },
+  openMenu(context: ActionContext<string, unknown>) {
+    context.commit('SET_MENU_STATE', true)
+  },
+  closeMenu(context: ActionContext<string, unknown>) {
+    context.commit('SET_MENU_STATE', false)
+  },
 };
 
 const getters = {

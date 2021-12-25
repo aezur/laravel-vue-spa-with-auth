@@ -33,6 +33,7 @@ body {
   overflow-x: hidden;
   overflow-y: scroll;
   box-sizing: border-box;
+  background-color: $bgColor;
 }
 
 #app {
