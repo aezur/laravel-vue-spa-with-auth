@@ -76,6 +76,7 @@ export default defineComponent({
         } else {
           const error = Error('Unable to fetch user after registration.');
           error.name = 'Fetch User';
+          this.$store.dispatch('ui/setError', error);
           throw error;
         }
       } catch (error) {
