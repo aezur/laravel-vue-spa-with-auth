@@ -53,8 +53,21 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/scss/vars.scss';
 .flash-msg {
-  border: 1px solid black;
-  margin: 0 3rem;
+  p {
+    margin: 0;
+  }
+  border: 1px solid $errorFontColor;
+  background-color: rgba($errorFontColor, 20%);
+  color: $errorFontColor;
+  padding: 1rem;
+  text-align: center;
+  @media (max-width: $phoneLandscape) {
+    margin: 3rem 0;
+  }
+  @media (min-width: $phoneLandscape) {
+    margin: 0 3rem;
+  }
 }
 </style>
