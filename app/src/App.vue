@@ -30,7 +30,9 @@ body {
   margin: 0;
   padding: 0;
   max-width: 100vw;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  box-sizing: border-box;
 }
 
 #app {
