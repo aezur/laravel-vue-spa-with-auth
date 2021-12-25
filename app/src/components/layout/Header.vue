@@ -71,11 +71,11 @@ header {
     width: 1.5rem;
     height: 1.5rem;
     margin: 0 .75rem;
-    @media (max-width: 35em) {
+    @media (max-width: $phoneLandscape) {
       margin: 1rem;
     }
   }
-  @media (max-width: 35em) {
+  @media (max-width: $phoneLandscape) {
     .hide-menu {
       transform: translateX(100%);
     }
@@ -83,7 +83,7 @@ header {
   .menu-btn {
     display: none;
     z-index: 9999;
-    @media (max-width: 35em) {
+    @media (max-width: $phoneLandscape) {
       display: block;
       position: absolute;
       top: 1rem;
@@ -113,7 +113,7 @@ header {
       margin-right: 1rem;
     }
   }
-  @media (max-width: 35em) {
+  @media (max-width: $phoneLandscape) {
       ul {
         border-left: 1px solid darkcyan;
         background: hsl(0 0% 70% / 0.1);
