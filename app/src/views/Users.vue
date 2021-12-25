@@ -54,6 +54,10 @@ export default defineComponent({
     grid-row-gap: 20px;
     margin-bottom: 2rem;
     border: 1px solid $fontColor;
+    background-color: $uiColor;
+    &:first-of-type {
+      margin-top: 3rem;
+    }
     p {
       margin: 0;
     }

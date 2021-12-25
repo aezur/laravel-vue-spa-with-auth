@@ -45,7 +45,7 @@ export default defineComponent({
     h1 {
       margin: 0;
     }
-    background-color: $bgColor;
+    background-color: $uiColor;
     display: flex;
     flex-direction: column;
     align-items: center;

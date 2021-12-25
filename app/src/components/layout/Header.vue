@@ -65,7 +65,7 @@ export default defineComponent({
 @import '@/assets/scss/vars';
 header {
   height: 3rem;
-  background-color: $bgColor;
+  background-color: $uiColor;
   position: sticky;
 	top: 0;
 	width: 100%;
@@ -110,7 +110,7 @@ header {
     justify-content: flex-end;
     overflow: hidden;
     gap: 2rem;
-    background-color: $bgColor;
+    background-color: $uiColor;
     &.hide-menu {
       margin: 0;
       padding: .5rem;

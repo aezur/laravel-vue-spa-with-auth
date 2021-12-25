@@ -22,7 +22,7 @@
   min-height: 100vh;
   z-index: 9999;
   .wrapper {
-    background-color: $bgColor;
+    background-color: $uiColor;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -30,11 +30,11 @@
     aspect-ratio: 1;
     border: solid 2px $fontColor;
     .spinner::before {
-      background-color: $bgColor;
+      background-color: $uiColor;
       animation: 1.5s linear infinite spinner;
       animation-play-state: inherit;
       border: solid 5px $fontColor;
-      border-bottom-color: lighten($fontColor, 15%);
+      border-bottom-color: $navFontColor;
       border-radius: 50%;
       content: "";
       height: 3rem;
