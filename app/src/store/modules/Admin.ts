@@ -73,6 +73,12 @@ const getters = {
   links: (state: AdminState): Links | void => {
     return state.links;
   },
+  currentPage: (state: AdminState): number | void => {
+    return state.meta?.current_page;
+  },
+  totalPages: (state: AdminState): number | void => {
+    return state.meta?.total;
+  },
 };
 
 export default {

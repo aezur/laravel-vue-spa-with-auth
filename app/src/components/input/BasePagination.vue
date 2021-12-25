@@ -23,7 +23,8 @@
 </template>
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, RouteLocation } from 'vue-router';
+import { useStore } from 'vuex';
 export default defineComponent({
   props: {
     meta: {
@@ -60,27 +61,32 @@ export default defineComponent({
     },
   },
   watch: {
-    async currentPage(newVal: number): Promise<void> {
-      if (newVal > this.meta?.last_page || newVal < 1) {
-        this.$router.push({
-          query: { page: this.meta?.current_page },
-        });
-      }
-      else if (this.meta?.current_page !== newVal) {
-        await this.changePage(newVal);
+    $route(newVal: RouteLocation, oldVal: RouteLocation): void {
+      const hasntChangedPage =
+        newVal.path === '/users' &&
+        oldVal.path === '/users';
+
+      const pageQuery = newVal.query.page;
+      const page = pageQuery ? +pageQuery : 1;
+
+      const diffPageRequested = page !== this.currentPage;
+
+      if (hasntChangedPage && diffPageRequested) {
+        const outOfBounds = page > this.$store.getters['admin/totalPages'] || page < 0;
+        if (outOfBounds) {
+          this.$router.push({ query: { page: this.currentPage }});
+        } else {
+          this.changePage(page);
+        }
       }
     }
   },
   setup() {
     const route = useRoute();
+    const store = useStore();
     return {
-      currentPage: computed(() => {
-        const page = route?.query?.page;
-        if (typeof page === 'string') {
-          return Number.parseInt(page);
-        }
-        return 1;
-      }),
+      currentPage: computed(() => store.getters['admin/currentPage']),
+      totalPages: computed(() => store.getters['admin/totalPages']),
     }
   }
 })
