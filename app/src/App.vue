@@ -43,8 +43,18 @@ body {
 main {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 0 1rem;
+  @media (max-width: $phonePortrait) {
+    padding: 0 1rem;
+  }
+  @media (min-width: $phonePortrait) {
+    padding: 0 5rem;
+  }
+  @media (min-width: $phoneLandscape) {
+    input {
+      min-width: min(400px, 80vw);
+    }
+    align-items: center;
+  }
 }
 
 form {
