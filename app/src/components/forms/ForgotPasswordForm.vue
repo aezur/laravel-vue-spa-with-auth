@@ -38,7 +38,6 @@ export default defineComponent({
     async requestReset() {
       this.errors = {};
       await AuthService.forgotPassword({ email: this.email })
-        .then(res => console.log(res))
         .catch(err => this.errors = getError(err));
     }
   },
