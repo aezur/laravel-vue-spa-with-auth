@@ -1,35 +1,10 @@
-import axios from 'axios';
-import store from '@/store';
-
-const baseURL = process.env.VUE_APP_API_URL;
-
-export const adminClient = axios.create({
-  baseURL,
-  withCredentials: true, // required to handle the CSRF token
-});
-
-/*
- * Add a response interceptor
- */
-adminClient.interceptors.response.use(
-  (response) => {
-    return response;
-  },
-  function (error) {
-    if (
-      error.response &&
-      [401, 419].includes(error.response.status) &&
-      store.getters['auth/authUser'] &&
-      !store.getters['auth/guest']
-    ) {
-      store.dispatch('auth/logout');
-    }
-    return Promise.reject(error);
-  }
-);
+import apiService from '@/services/ApiService';
 
 export default {
-  getUsers(): Promise<{ data: { data: User[] }}> {
-    return adminClient.get('/api/users');
+  getUsers(page = 0): Promise<{ data: { data: User[] }}> {
+    return apiService.get(`/users?page=${page}`);
+  },
+  paginateUsers(link: string): Promise<{ data: { data: User[] }}> {
+    return apiService.get(link);
   },
 };

@@ -1,6 +1,8 @@
 import {
   createRouter,
   createWebHashHistory,
+  NavigationGuardNext,
+  RouteLocationNormalized,
   RouteRecordRaw,
 } from 'vue-router';
 import AuthGuard from '@/middleware/AuthGuard';
@@ -52,6 +54,18 @@ const routes: Array<RouteRecordRaw> = [
     name: 'users',
     component: () => import(/* webpackChunkName: "common" */ '@/views/Users.vue'),
     meta: { middleware: [AuthGuard, AdminGuard] },
+    beforeEnter(
+      to: RouteLocationNormalized,
+      from: RouteLocationNormalized,
+      next: NavigationGuardNext) {
+        const pageQuery = to.query.page;
+        console.log(pageQuery);
+        const currentPage = parseInt(pageQuery?.toString() || '1');
+        store.dispatch("admin/getUsers", currentPage).then(() => {
+          to.query.page = currentPage.toString();
+          next();
+        });
+      }
   },
   {
     path: '/:pathMatch(.*)*',

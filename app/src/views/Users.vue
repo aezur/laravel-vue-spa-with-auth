@@ -1,14 +1,20 @@
 <template>
-  <p id="users" v-for="user in $store.getters['admin/users']" :key="user">{{ user }}</p>
+  <div id="users"
+    v-for="user in $store.getters['admin/users']"
+    :key="user">
+    <p>{{ user }}</p>
+  </div>
+  <BasePagination
+    path="/users"
+    :meta="$store.getters['admin/meta']"
+    :links="$store.getters['admin/links']"
+    action="admin/paginateUsers" />
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import BasePagination from '@/components/input/BasePagination.vue';
 export default defineComponent({
-  async mounted() {
-    if (!this.$store.getters['admin/users']) {
-      await this.$store.dispatch('admin/getUsers');
-    }
-  },
+  components: { BasePagination },
 });
 </script>
