@@ -17,6 +17,7 @@
     </div>
   </div>
   <BasePagination
+    v-if="$store.getters['admin/links']"
     path="/users"
     :meta="$store.getters['admin/meta']"
     :links="$store.getters['admin/links']"
