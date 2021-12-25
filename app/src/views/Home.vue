@@ -11,3 +11,10 @@ export default defineComponent({
   props: ['query'],
 });
 </script>
+
+<style lang="scss" scoped>
+div {
+  display: flex;
+  justify-content: center;
+}
+</style>
