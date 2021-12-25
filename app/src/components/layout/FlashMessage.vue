@@ -1,5 +1,5 @@
 <template>
-<teleport to="nav">
+<teleport to="body">
   <div class="flash-msg">
     <p v-if="$attrs.message" key="message">
       {{ $attrs.message }}
