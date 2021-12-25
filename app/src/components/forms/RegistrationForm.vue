@@ -1,5 +1,4 @@
 <template>
-<div>
   <form @submit.prevent="register">
     <BaseInput
       v-model="name"
@@ -33,7 +32,6 @@
       Submit
     </button>
   </form>
-</div>
 </template>
 <script lang="ts">
 import AuthService from '@/services/AuthService';

@@ -1,5 +1,4 @@
 <template>
-<div>
   <form @submit.prevent="resetPassword">
     <BaseInput
       v-model="email"
@@ -26,7 +25,6 @@
       Reset Password
     </button>
   </form>
-</div>
 </template>
 
 <script lang="ts">

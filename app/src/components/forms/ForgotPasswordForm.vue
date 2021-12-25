@@ -1,5 +1,4 @@
 <template>
-<div>
   <form @submit.prevent="requestReset">
     <BaseInput
       v-model="email"
@@ -12,7 +11,6 @@
       <span>Request Reset</span>
     </button>
   </form>
-</div>
 </template>
 <script lang="ts">
 import AuthService from '@/services/AuthService';
