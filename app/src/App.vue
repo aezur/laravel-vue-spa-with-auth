@@ -6,17 +6,17 @@
     </main>
   </body>
   <FlashMessage
-      v-if="$store.getters['auth/message'] || $store.getters['auth/error']"
-      anchor="header"
-      :message="$store.getters['auth/message']"
-      :error="$store.getters['auth/error']"
-    />
+    v-if="$store.getters['ui/message'] || $store.getters['ui/error']"
+    anchor="main"
+    :message="$store.getters['ui/message']"
+    :error="$store.getters['ui/error']"
+  />
 </template>
 
 <script lang="ts">
-import { Options, Vue } from "vue-class-component";
-import Header from "@/components/layout/Header.vue";
-import FlashMessage from "@/components/layout/FlashMessage.vue";
+import { Options, Vue } from 'vue-class-component';
+import Header from '@/components/layout/Header.vue';
+import FlashMessage from '@/components/layout/FlashMessage.vue';
 @Options({ components: { Header, FlashMessage } })
 export default class App extends Vue {}
 </script>
@@ -69,5 +69,9 @@ form {
   button[type="submit"] {
     margin-bottom: 1rem;
   }
+}
+
+.clickable {
+  cursor: pointer;
 }
 </style>
