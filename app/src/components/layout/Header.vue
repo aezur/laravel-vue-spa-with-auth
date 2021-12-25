@@ -1,58 +1,56 @@
 <template>
-<header>
-  <img class="logo" src="@/assets/logo.png" />
-  <nav id="nav">
-    <img v-if="menuIsOpen"
-      class="menu-btn"
-      @click="toggleMenu"
-      src="@/assets/close.png" />
-    <img v-else
-      class="menu-btn"
-      @click="toggleMenu"
-      src="@/assets/menu.png" />
+  <header>
+    <img class="logo" src="@/assets/logo.png" />
+    <nav id="nav">
+      <img
+        v-if="menuIsOpen"
+        class="menu-btn clickable"
+        @click="toggleMenu"
+        src="@/assets/close.png"
+      />
+      <img
+        v-else
+        class="menu-btn clickable"
+        @click="toggleMenu"
+        src="@/assets/menu.png"
+      />
 
-    <ul :class="menuIsOpen?'':'hide-menu'">
-      <li v-if="!loggedIn">
-        <router-link to="/login">Login</router-link>
-      </li>
-      <li v-if="!loggedIn">
-        <router-link to="/register">Register</router-link>
-      </li>
-      <li v-if="loggedIn">
-        <router-link to="/home">Home</router-link>
-      </li>
-      <li v-if="loggedIn">
-        <router-link to="/about">About</router-link>
-      </li>
-      <li v-if="isAdmin">
-        <router-link to="/users">Users</router-link>
-      </li>
-      <li v-if="loggedIn">
-        <router-link to="/" @click="closeMenuAndLogout">Logout</router-link>
-      </li>
-    </ul>
-  </nav>
-</header>
+      <ul :class="menuIsOpen ? '' : 'hide-menu'">
+        <li v-if="!loggedIn" @click="toggleMenu">
+          <router-link to="/login">Login</router-link>
+        </li>
+        <li v-if="!loggedIn" @click="toggleMenu">
+          <router-link to="/register">Register</router-link>
+        </li>
+        <li v-if="loggedIn" @click="toggleMenu">
+          <router-link to="/home">Home</router-link>
+        </li>
+        <li v-if="loggedIn" @click="toggleMenu">
+          <router-link to="/about">About</router-link>
+        </li>
+        <li v-if="isAdmin" @click="toggleMenu">
+          <router-link to="/users">Users</router-link>
+        </li>
+        <li v-if="loggedIn" @click="toggleMenu">
+          <router-link to="/" @click="logout">Logout</router-link>
+        </li>
+      </ul>
+    </nav>
+  </header>
 </template>
 
 <script lang="ts">
-import {defineComponent, computed} from 'vue';
-import {useStore} from 'vuex';
+import { defineComponent, computed } from "vue";
+import { useStore } from "vuex";
 export default defineComponent({
-  methods: {
-    closeMenuAndLogout() {
-      this.toggleMenu();
-      this.logout();
-    },
-  },
   setup() {
     const store = useStore();
     return {
-      loggedIn: computed(() => store.getters['auth/loggedIn']),
-      isAdmin: computed(() => store.getters['auth/isAdmin']),
-      menuIsOpen: computed(() => store.getters['ui/menuIsOpen']),
-      logout: async () => await store.dispatch('auth/logout'),
-      toggleMenu: async () => await store.dispatch('ui/toggleMenu'),
+      loggedIn: computed(() => store.getters["auth/loggedIn"]),
+      isAdmin: computed(() => store.getters["auth/isAdmin"]),
+      menuIsOpen: computed(() => store.getters["ui/menuIsOpen"]),
+      logout: async () => await store.dispatch("auth/logout"),
+      toggleMenu: async () => await store.dispatch("ui/toggleMenu"),
     };
   },
 });
@@ -72,7 +70,7 @@ header {
     left: 0;
     width: 1.5rem;
     height: 1.5rem;
-    margin: .75rem;
+    margin: 0.75rem;
     @media (max-width: $phoneLandscape) {
       margin: 1rem;
     }
@@ -94,7 +92,6 @@ header {
       height: 1.5rem;
     }
   }
-
 }
 #nav {
   ul {
@@ -102,7 +99,7 @@ header {
     list-style-type: none;
     display: flex;
     align-items: center;
-    justify-content: end;
+    justify-content: flex-end;
     overflow: hidden;
     gap: 2rem;
     li {
@@ -116,20 +113,20 @@ header {
     }
   }
   @media (max-width: $phoneLandscape) {
-      ul {
-        border-left: 1px solid darkcyan;
-        background: hsl(0 0% 70% / 0.1);
-        backdrop-filter: blur(1rem);
-        flex-direction: column;
-        justify-content: start;
-        position: fixed;
-        inset: 0 0 0 30%;
-        margin: 0;
-        padding: 5rem 0 0 0;
-        li:last-of-type {
-          margin-right: 0;
-        }
+    ul {
+      border-left: 1px solid darkcyan;
+      background: hsl(0 0% 70% / 0.1);
+      backdrop-filter: blur(1rem);
+      flex-direction: column;
+      justify-content: start;
+      position: fixed;
+      inset: 0 0 0 30%;
+      margin: 0;
+      padding: 5rem 0 0 0;
+      li:last-of-type {
+        margin-right: 0;
       }
+    }
   }
 }
 </style>
