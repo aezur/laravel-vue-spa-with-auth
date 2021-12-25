@@ -64,13 +64,15 @@ header {
   height: 3.5rem;
   .router-link-active {
     font-weight: bold;
+    text-decoration: underline !important;
   }
   .logo {
-    float: left;
-    display: inline;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 1.5rem;
     height: 1.5rem;
-    margin: 0 .75rem;
+    margin: .75rem;
     @media (max-width: $phoneLandscape) {
       margin: 1rem;
     }
