@@ -24,7 +24,7 @@ Route::post('/token', [TokenController::class, '__invoke']);
 /* Protected Routes */
 Route::middleware(['auth:sanctum', 'admin'])
     ->get('/users', function () {
-        return UserResource::collection(User::all());
+        return UserResource::collection(User::paginate(5));
     });
 
 Route::prefix('users')
