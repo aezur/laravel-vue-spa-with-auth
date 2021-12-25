@@ -2,6 +2,7 @@
   <label v-if="$attrs.label" :for="$attrs.id">{{ $attrs.label }}</label>
   <input
     :id="$attrs.id"
+    :style="$attrs.errors?'margin:0;':''"
     :type="$attrs.type"
     :placeholder="$attrs.placeholder"
     v-model="inputValue"
@@ -32,3 +33,10 @@ export default defineComponent({
   },
 });
 </script>
+
+<style lang="scss" scoped>
+@import '@/assets/scss/vars.scss';
+small {
+  color: $errorFontColor;
+}
+</style>
