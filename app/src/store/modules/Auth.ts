@@ -56,6 +56,12 @@ const actions = {
   ): void {
     window.localStorage.setItem('guest', value);
   },
+  setUser(
+    context: ActionContext<string, unknown>,
+    user: User
+  ) {
+    context.commit('SET_USER', user);
+  },
 };
 
 const getters = {
