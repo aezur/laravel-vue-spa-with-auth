@@ -25,9 +25,9 @@ export default defineComponent({
         formData.append('file', file);
         this.$store.dispatch('ui/showLoader');
         FileService.uploadFile({ file: formData, endpoint: this.endpoint })
-        .then(() => {
+        .then(({data}) => {
+          this.$emit('fileUploaded', data.data);
           this.$store.dispatch('ui/hideLoader');
-          this.$emit('fileUploaded');
         })
         .catch((error: Error) => {
           this.$store.dispatch('ui/hideLoader');

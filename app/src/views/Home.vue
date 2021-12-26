@@ -6,16 +6,25 @@
     <p v-if="$props?.query?.verified">
       Thanks for verifying your email!
     </p>
-    <FileUpload endpoint="/users/auth/avatar" />
+    <ImageAsset
+      class="avatar"
+      :path="$store.getters['auth/authUser'].avatar"
+    />
+    <FileUpload
+      endpoint="/users/auth/avatar"
+      @fileUploaded="updateUser"
+    />
   </div>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
 import FileUpload from '@/components/input/FileUpload.vue';
+import ImageAsset from '@/components/ImageAsset.vue';
 export default defineComponent({
   components: {
     FileUpload,
+    ImageAsset,
   },
   // eslint-disable-next-line
   props: ['query'],
@@ -25,6 +34,9 @@ export default defineComponent({
         title: 'Test Modal',
         text: 'This is a test modal!'
       })
+    },
+    updateUser(user: User) {
+      this.$store.dispatch('auth/setUser', user);
     }
   },
 });
@@ -35,6 +47,12 @@ div {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   gap: 2rem;
+}
+.avatar {
+  border-radius: 50%;
+  width: 20vw;
+  aspect-ratio: 1;
 }
 </style>
