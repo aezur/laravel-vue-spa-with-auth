@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->timestamps();
             $table->boolean('is_admin')->nullable();
             $table->timestamp('deleted_at')->nullable();
+            $table->string('avatar')->nullable();
         });
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\AvatarController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TokenController;
 use App\Http\Controllers\AuthController;
@@ -22,13 +22,28 @@ use App\Models\User;
 Route::post('/token', [TokenController::class, '__invoke']);
 
 /* Protected Routes */
-Route::middleware(['auth:sanctum', 'admin'])
-    ->get('/users', function () {
-        return UserResource::collection(User::paginate(5));
-    });
+Route::middleware(['auth:sanctum'])
+->group(function () {
 
-Route::prefix('users')
-    ->middleware(['auth:sanctum'])
+  Route::prefix('users')
+  ->group(function () {
+
+    Route::prefix('auth')
     ->group(function () {
-        Route::get('/auth', AuthController::class);
+      Route::get('/', AuthController::class);
+      Route::post('/avatar', [AvatarController::class, 'store']);
     });
+  });
+});
+
+/* Admin Routes */
+Route::middleware(['auth:sanctum', 'admin'])
+->group(function () {
+
+  Route::prefix('users')
+  ->group(function () {
+    Route::get('/', function () {
+      return UserResource::collection(User::paginate(5));
+    });
+  });
+});
