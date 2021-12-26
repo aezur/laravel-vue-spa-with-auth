@@ -64,7 +64,6 @@ export default defineComponent({
 <style lang="scss" scoped>
 @import '@/assets/scss/vars';
 header {
-  height: 3rem;
   background-color: $uiColor;
   position: sticky;
 	top: 0;
@@ -79,7 +78,7 @@ header {
     left: 0;
     width: 1.5rem;
     height: 1.5rem;
-    margin: 0.75rem;
+    margin: 0.5rem;
     @media (max-width: $phoneLandscape) {
       margin: 1rem;
     }
