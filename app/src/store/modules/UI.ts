@@ -59,6 +59,12 @@ const actions = {
   closeModal(context: ActionContext<string, unknown>) {
     context.commit('SET_MODAL_STATE', false);
   },
+  showLoader(context: ActionContext<string, unknown>) {
+    context.commit('SET_LOADING', true);
+  },
+  hideLoader(context: ActionContext<string, unknown>) {
+    context.commit('SET_LOADING', false);
+  }
 };
 
 const getters = {
