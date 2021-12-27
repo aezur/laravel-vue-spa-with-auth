@@ -1,14 +1,17 @@
 <template>
-  <input
+  <BaseInput
+    id="avatar"
     type="file"
     :accept="['image/*']"
     @change="fileChange"
-  >
+  />
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
 import FileService from '@/services/FileService';
+import BaseInput from '@/components/input/BaseInput.vue';
 export default defineComponent({
+  components: { BaseInput },
   props: {
     endpoint: {
       type: String,
