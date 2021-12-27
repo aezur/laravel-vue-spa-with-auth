@@ -1,15 +1,15 @@
 <template>
   <form @submit.prevent="login">
     <BaseInput
-      v-model="email"
       id="email"
+      v-model="email"
       type="email"
       label="Email"
       :errors="errors?.email"
     />
     <BaseInput
-      v-model="password"
       id="password"
+      v-model="password"
       type="password"
       label="Password"
       :errors="errors?.password"

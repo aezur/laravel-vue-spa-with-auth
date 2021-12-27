@@ -1,29 +1,29 @@
 <template>
   <form @submit.prevent="register">
     <BaseInput
-      v-model="name"
       id="name"
+      v-model="name"
       type="name"
       label="Name"
       :errors="errors?.name"
     />
     <BaseInput
-      v-model="email"
       id="email"
+      v-model="email"
       type="email"
       label="Email"
       :errors="errors?.email"
     />
     <BaseInput
-      v-model="password"
       id="password"
+      v-model="password"
       type="password"
       label="Password"
       :errors="errors?.password"
     />
     <BaseInput
-      v-model="password_confirmation"
       id="password_confirmation"
+      v-model="password_confirmation"
       type="password"
       label="Confirm Password"
       :errors="errors?.password_confirmation"

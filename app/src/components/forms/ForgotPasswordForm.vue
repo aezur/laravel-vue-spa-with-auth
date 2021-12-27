@@ -1,8 +1,8 @@
 <template>
   <form @submit.prevent="requestReset">
     <BaseInput
-      v-model="email"
       id="email"
+      v-model="email"
       type="email"
       label="Email"
       :errors="errors?.email"

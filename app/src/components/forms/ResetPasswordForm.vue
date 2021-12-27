@@ -1,22 +1,22 @@
 <template>
   <form @submit.prevent="resetPassword">
     <BaseInput
-      v-model="email"
       id="email"
+      v-model="email"
       type="email"
       label="Email"
       :errors="errors?.email"
     />
     <BaseInput
-      v-model="password"
       id="password"
+      v-model="password"
       type="password"
       label="New Password"
       :errors="errors?.password"
     />
     <BaseInput
-      v-model="password_confirmation"
       id="password_confirmation"
+      v-model="password_confirmation"
       type="password"
       label="Confirm New Password"
       :errors="errors?.password_confirmation"
@@ -49,6 +49,12 @@ export default defineComponent({
       errors: null,
     }
   },
+  computed: {
+    token(): string {
+      const token = this.$route.params.token;
+      return typeof token === 'string' ? token : token[0];
+    }
+  },
   methods: {
     async resetPassword() {
       this.errors = {};
@@ -61,12 +67,6 @@ export default defineComponent({
       })
         .then(() => this.$router.push({ name: 'login' }))
         .catch(err => this.errors = getError(err));
-    }
-  },
-  computed: {
-    token(): string {
-      const token = this.$route.params.token;
-      return typeof token === 'string' ? token : token[0];
     }
   },
 });

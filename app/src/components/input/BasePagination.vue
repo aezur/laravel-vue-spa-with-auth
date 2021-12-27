@@ -1,17 +1,27 @@
 <template>
   <div>
-    <button @click="changePage(links.first)"
-      :disabled="meta.total===1||meta.current_page===1">
+    <button
+      :disabled="meta.total===1||meta.current_page===1"
+      @click="changePage(links.first)"
+    >
       First
     </button>
-    <button @click="changePage(links.prev)" :disabled="!links.prev">
+    <button
+      :disabled="!links.prev"
+      @click="changePage(links.prev)"
+    >
       Prev
     </button>
-    <button @click="changePage(links.next)" :disabled="!links.next">
+    <button 
+      :disabled="!links.next"
+      @click="changePage(links.next)" 
+    >
       Next
     </button>
-    <button @click="changePage(links.last)"
-      :disabled="meta.total===1||meta.current_page===meta.last_page">
+    <button 
+      :disabled="meta.total===1||meta.current_page===meta.last_page"
+      @click="changePage(links.last)"
+    >
       Last
     </button>
   </div>
@@ -19,7 +29,6 @@
     <p>Showing {{ meta.from }} to {{ meta.to }} of {{ meta.total }}</p>
     <p>Page {{ meta.current_page }} of {{ meta.last_page }}</p>
   </div>
-
 </template>
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
@@ -44,23 +53,17 @@ export default defineComponent({
       required: true,
     },
   },
-  methods: {
-    async changePage(page: string | number): Promise<void> {
-      const url = typeof page === 'string' ?
-        page : `${this.meta.path}?page=${page}`;
-      await this.$store.dispatch(
-        this.action, url,
-      ).then(() => {
-        if (this.path) {
-          this.$router.push({
-            path: this.path,
-            query: { page: this.meta?.current_page || 1 },
-          });
-        }
-      });
-    },
+  setup() {
+    const route = useRoute();
+    const store = useStore();
+    return {
+      currentPage: computed(() => store.getters['admin/currentPage']),
+      totalPages: computed(() => store.getters['admin/totalPages']),
+    };
   },
   watch: {
+    // Watch the route for changes, and if the user changes
+    // the '?page=' query, update the list.
     $route(newVal: RouteLocation, oldVal: RouteLocation): void {
       const hasntChangedPage =
         newVal.path === '/users' &&
@@ -81,15 +84,23 @@ export default defineComponent({
       }
     }
   },
-  setup() {
-    const route = useRoute();
-    const store = useStore();
-    return {
-      currentPage: computed(() => store.getters['admin/currentPage']),
-      totalPages: computed(() => store.getters['admin/totalPages']),
-    }
-  }
-})
+  methods: {
+    async changePage(page: string | number): Promise<void> {
+      const url = typeof page === 'string' ?
+        page : `${this.meta.path}?page=${page}`;
+      await this.$store.dispatch(
+        this.action, url,
+      ).then(() => {
+        if (this.path) {
+          this.$router.push({
+            path: this.path,
+            query: { page: this.meta?.current_page || 1 },
+          });
+        }
+      });
+    },
+  },
+});
 </script>
 
 <style lang="scss" scoped>
