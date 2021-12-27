@@ -182,7 +182,7 @@ header {
     @media (max-width: $phoneLandscape) {
       ul {
         border-left: 1px solid $primary;
-        background: rgba($primary, 35%);
+        background: rgba($secondary, 35%);
         backdrop-filter: blur(1rem);
         flex-direction: column;
         justify-content: start;
@@ -190,6 +190,7 @@ header {
         inset: 0 0 0 30%;
         margin: 0;
         font-weight: bold;
+        padding: 0;
         li:last-of-type {
           margin-right: 0;
         }
