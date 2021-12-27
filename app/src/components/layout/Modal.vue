@@ -17,6 +17,7 @@ import { defineComponent, computed } from 'vue';
 import { useStore } from 'vuex';
 import Button from '@/components/input/Button.vue';
 export default defineComponent({
+  components: { Button },
   setup() {
     const store = useStore();
     return {
@@ -30,6 +31,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 @import '@/assets/scss/colors.scss';
+@import '@/assets/scss/vars.scss';
 .modal {
   position: absolute;
   display: flex;
@@ -50,8 +52,16 @@ export default defineComponent({
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 80vw;
-    padding: .5rem;
+    padding: 1rem;
+    @media (max-width: $phoneLandscape) {
+      width: 100vw;
+    }
+    @media (max-width: $tabletLandscape) {
+      width: 60vw;
+    }
+    @media (min-width: $tabletLandscape) {
+      width: 40vw;
+    }
   }
 }
 </style>
