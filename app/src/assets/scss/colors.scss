@@ -1,9 +1,11 @@
 $primary: #00564D;
+$primary-light: lighten($primary, 10%);
+$primary-dark: darken($primary, 10%);
 $secondary: #6200EE;
 $danger: #EF233C;
 
 $bg: #282828;
 $ui: #363636;
 
-$font: #969696;
+$font: #b9b9b9;
 $link: lighten($font, 10%);
