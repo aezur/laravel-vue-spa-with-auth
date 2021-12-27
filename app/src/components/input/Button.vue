@@ -1,5 +1,5 @@
 <template>
-  <button>
+  <button :class="color">
     <slot />
   </button>
 </template>
@@ -10,6 +10,10 @@ export default defineComponent({
     text: {
       type: String,
       default: () => '',
+    },
+    color: {
+      type: String,
+      default: () => 'primary',
     }
   }
 });
@@ -18,19 +22,48 @@ export default defineComponent({
 @import '@/assets/scss/colors';
 button {
   color: $link;
-  background-color: $primary;
+  font-weight: bold;
   cursor: pointer;
   font-size: 1.1rem;
   padding: .375rem .75rem;
   text-transform: uppercase;
   border: none;
   border-radius: .25rem;
+}
+.primary {
+  background-color: $primary;
   &:hover,:focus {
     background-color: $primary-light;
-    color: $font;
   }
   &:active {
     background-color: $primary-dark;
+  }
+}
+.secondary {
+  background-color: $secondary;
+  &:hover,:focus {
+    background-color: $secondary-light;
+  }
+  &:active {
+    background-color: $secondary-dark;
+  }
+}
+.success {
+  background-color: $success;
+  &:hover,:focus {
+    background-color: $success-dark;
+  }
+  &:active {
+    background-color: $success-light;
+  }
+}
+.danger {
+  background-color: $danger;
+  &:hover,:focus {
+    background-color: $danger-dark;
+  }
+  &:active {
+    background-color: $danger-light;
   }
 }
 </style>

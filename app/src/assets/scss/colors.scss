@@ -1,8 +1,18 @@
 $primary: #00564D;
 $primary-light: lighten($primary, 10%);
 $primary-dark: darken($primary, 10%);
+
 $secondary: #6200EE;
+$secondary-light: lighten($secondary, 10%);
+$secondary-dark: darken($secondary, 10%);
+
+$success: #5cc533;
+$success-light: lighten($success, 10%);
+$success-dark: darken($success, 10%);
+
 $danger: #EF233C;
+$danger-light: lighten($danger, 10%);
+$danger-dark: darken($danger, 10%);
 
 $bg: #282828;
 $ui: #363636;
