@@ -1,14 +1,15 @@
 <template>
   <div class="home">
-    <button @click="openModal">
-      Open Modal
-    </button>
     <p v-if="$props?.query?.verified">
       Thanks for verifying your email!
     </p>
+    <button @click="openModal">
+      Open Modal
+    </button>
     <ImageAsset
+      v-if="avatar"
       class="avatar"
-      :path="$store.getters['auth/authUser'].avatar"
+      :path="avatar"
     />
     <FileUpload
       endpoint="/users/auth/avatar"
@@ -26,8 +27,17 @@ export default defineComponent({
     FileUpload,
     ImageAsset,
   },
-  // eslint-disable-next-line
-  props: ['query'],
+  props: {
+    query: {
+      type: String,
+      default: () => '',
+    },
+  },
+  computed: {
+    avatar() {
+      return this.$store.getters['auth/authUser'].avatar;
+    }
+  },
   methods: {
     openModal() {
       this.$store.dispatch('ui/openModal', {
