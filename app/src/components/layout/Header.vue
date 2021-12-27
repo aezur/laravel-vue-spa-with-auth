@@ -1,18 +1,18 @@
 <template>
   <header>
     <nav id="nav">
-      <img
+      <fa-icon
         v-if="menuIsOpen"
-        src="@/assets/close.png"
+        icon="times"
         class="menu-btn clickable"
         @click="toggleMenu"
-      >
-      <img
+      />
+      <fa-icon
         v-else
-        src="@/assets/menu.png"
+        icon="bars"
         class="menu-btn clickable"
         @click="toggleMenu"
-      >
+      />
 
       <ul :class="menuIsOpen ? '' : 'hide-menu'">
         <div class="branding">
@@ -155,6 +155,7 @@ header {
   .menu-btn {
     display: none;
     z-index: 9999;
+    color: $link;
     @media (max-width: $phoneLandscape) {
       display: block;
       position: absolute;
