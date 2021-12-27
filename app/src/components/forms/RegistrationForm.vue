@@ -3,7 +3,7 @@
     <Input
       id="name"
       v-model="name"
-      type="name"
+      type="text"
       label="Name"
       :errors="errors?.name"
     />
