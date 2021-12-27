@@ -21,21 +21,21 @@
       label="Confirm New Password"
       :errors="errors?.password_confirmation"
     />
-    <BaseButton type="submit">
+    <Button type="submit">
       Reset Password
-    </BaseButton>
+    </Button>
   </form>
 </template>
 
 <script lang="ts">
 import AuthService from '@/services/AuthService';
 import BaseInput from '@/components/input/BaseInput.vue';
-import BaseButton from '@/components/input/BaseButton.vue';
+import Button from '@/components/input/Button.vue';
 import { defineComponent } from 'vue';
 import { getError } from '@/utils/helpers';
 
 export default defineComponent({
-  components: { BaseInput, BaseButton },
+  components: { BaseInput, Button },
   data(): {
       password_confirmation: string,
       password: string,

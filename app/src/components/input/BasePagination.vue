@@ -1,29 +1,29 @@
 <template>
   <div>
-    <BaseButton
+    <Button
       :disabled="meta.total===1||meta.current_page===1"
       @click="changePage(links.first)"
     >
       First
-    </BaseButton>
-    <BaseButton
+    </Button>
+    <Button
       :disabled="!links.prev"
       @click="changePage(links.prev)"
     >
       Prev
-    </BaseButton>
-    <BaseButton 
+    </Button>
+    <Button 
       :disabled="!links.next"
       @click="changePage(links.next)" 
     >
       Next
-    </BaseButton>
-    <BaseButton 
+    </Button>
+    <Button 
       :disabled="meta.total===1||meta.current_page===meta.last_page"
       @click="changePage(links.last)"
     >
       Last
-    </BaseButton>
+    </Button>
   </div>
   <div>
     <p>Showing {{ meta.from }} to {{ meta.to }} of {{ meta.total }}</p>
@@ -34,9 +34,9 @@
 import { defineComponent, computed } from 'vue';
 import { useRoute, RouteLocation } from 'vue-router';
 import { useStore } from 'vuex';
-import BaseButton from '@/components/input/BaseButton.vue';
+import Button from '@/components/input/Button.vue';
 export default defineComponent({
-  components: { BaseButton },
+  components: { Button },
   props: {
     meta: {
       type: Object,

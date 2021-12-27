@@ -4,9 +4,9 @@
       <div class="wrapper">
         <h1>{{ title }}</h1>
         <p>{{ text }}</p>
-        <BaseButton @click="closeModal">
+        <Button @click="closeModal">
           Close
-        </BaseButton>
+        </Button>
       </div>
     </div>
   </teleport>
@@ -15,7 +15,7 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
 import { useStore } from 'vuex';
-import BaseButton from '@/components/input/BaseButton.vue';
+import Button from '@/components/input/Button.vue';
 export default defineComponent({
   setup() {
     const store = useStore();

@@ -7,21 +7,21 @@
       label="Email"
       :errors="errors?.email"
     />
-    <BaseButton type="submit">
+    <Button type="submit">
       <span>Request Reset</span>
-    </BaseButton>
+    </Button>
   </form>
 </template>
 <script lang="ts">
 import AuthService from '@/services/AuthService';
 import BaseInput from '@/components/input/BaseInput.vue';
-import BaseButton from '@/components/input/BaseButton.vue';
+import Button from '@/components/input/Button.vue';
 import {defineComponent} from 'vue';
 import {getError} from '@/utils/helpers';
 export default defineComponent({
   components: {
     BaseInput,
-    BaseButton,
+    Button,
   },
   data(): {
     email: string,

@@ -3,9 +3,9 @@
     <p v-if="query">
       Thanks for verifying your email!
     </p>
-    <BaseButton @click="openModal">
+    <Button @click="openModal">
       <span>Open Modal</span>
-    </BaseButton>
+    </Button>
     <ImageAsset
       v-if="avatar"
       class="avatar"
@@ -21,13 +21,13 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import FileUpload from '@/components/input/FileUpload.vue';
-import BaseButton from '@/components/input/BaseButton.vue';
+import Button from '@/components/input/Button.vue';
 import ImageAsset from '@/components/ImageAsset.vue';
 export default defineComponent({
   components: {
     FileUpload,
     ImageAsset,
-    BaseButton,
+    Button,
   },
   props: {
     verified: {
