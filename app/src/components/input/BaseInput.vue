@@ -9,8 +9,10 @@
     :id="$attrs.id"
     v-model="inputValue"
     :type="$attrs.type"
+    :accept="$attrs.accept"
     :placeholder="$attrs.placeholder"
     :style="$attrs.errors?'margin:0;':''"
+    @change="$emit('change', $event)"
   >
   <div v-if="$attrs.errors">
     <small
@@ -31,7 +33,7 @@ export default defineComponent({
       default: () => '',
     },
   },
-  emits: ['update:modelValue'],
+  emits: ['update:modelValue', 'change'],
   data() {
     return {
       inputValue: this.modelValue,
