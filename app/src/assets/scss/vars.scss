@@ -1,8 +1,9 @@
-$navFontColor: darkcyan;
+$navFontColor: #DAECFF;
 $fontColor: darken(white, 55%);
+$headerColor: darkcyan;
 $errorFontColor: darken(red, 5%);
-$uiColor: lighten(white, 45%);
-$bgColor: darken(white, 85%);
+$uiColor: lighten(#DAECFF, 5%);
+$bgColor: #DAECFF;
 
 $phonePortrait: 320px;
 $phoneLandscape: 568px;
