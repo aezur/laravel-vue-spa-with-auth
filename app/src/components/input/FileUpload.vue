@@ -1,6 +1,6 @@
 <template>
   <Input
-    id="avatar"
+    id="file"
     type="file"
     :accept="['image/*']"
     @change="fileChange"
