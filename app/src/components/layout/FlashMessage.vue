@@ -1,5 +1,5 @@
 <template>
-  <teleport to="body">
+  <teleport to="header">
     <div class="flash-msg">
       <p
         v-if="$attrs.message"
@@ -65,19 +65,16 @@ export default defineComponent({
 @import '@/assets/scss/vars.scss';
 @import '@/assets/scss/colors.scss';
 .flash-msg {
-  p {
-    margin: 0;
-  }
+  p { margin: 0; }
   border: 1px solid $danger;
   background-color: rgba($danger, 20%);
   color: $danger;
-  padding: 1rem;
   text-align: center;
+  margin: 1rem;
+  padding: .5rem;
   @media (max-width: $phoneLandscape) {
-    margin: 3rem 0;
-  }
-  @media (min-width: $phoneLandscape) {
-    margin: 0 3rem;
+    margin-right: 3.5rem;
+    padding: .75rem;
   }
 }
 </style>
