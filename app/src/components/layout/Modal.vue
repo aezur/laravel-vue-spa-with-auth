@@ -4,7 +4,10 @@
       <div class="wrapper">
         <h1>{{ title }}</h1>
         <p>{{ text }}</p>
-        <Button @click="closeModal">
+        <Button
+          color="danger"
+          @click="closeModal"
+        >
           Close
         </Button>
       </div>
