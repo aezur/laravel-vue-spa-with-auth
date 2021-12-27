@@ -52,4 +52,14 @@ export default defineComponent({
 small {
   color: $danger;
 }
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"] {
+  background-color: $ui;
+  height: 1.5rem;
+  border-radius: .25rem;
+  border: 2px $bg inset;
+  color: $font;
+}
 </style>
