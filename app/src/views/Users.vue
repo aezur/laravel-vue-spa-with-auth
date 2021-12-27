@@ -34,7 +34,7 @@
         </p>
       </div>
     </div>
-    <BasePagination
+    <Pagination
       v-if="$store.getters['admin/links']"
       path="/users"
       :meta="$store.getters['admin/meta']"
@@ -46,9 +46,9 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import BasePagination from '@/components/input/BasePagination.vue';
+import Pagination from '@/components/input/Pagination.vue';
 export default defineComponent({
-  components: { BasePagination },
+  components: { Pagination },
   methods: {
     parseTimestamp(ts: string) {
       return new Date(ts).toLocaleString() || '-';
