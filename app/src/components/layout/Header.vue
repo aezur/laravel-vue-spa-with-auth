@@ -103,6 +103,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 @import '@/assets/scss/vars';
+@import '@/assets/scss/colors';
 header {
   position: sticky;
 	top: 0;
@@ -115,7 +116,7 @@ header {
     align-items: center;
     p {
       margin: 0;
-      color: $navFontColor;
+      color: $link;
       font-weight: bold;
     }
     .logo {
@@ -141,7 +142,7 @@ header {
   }
   .logout {
     margin: 0;
-    color: $navFontColor;
+    color: $link;
     &:hover {
       text-decoration: underline;
     }
@@ -172,7 +173,7 @@ header {
       justify-content: flex-end;
       overflow: hidden;
       gap: 2rem;
-      background-color: $headerColor;
+      background-color: $primary;
       &.hide-menu {
         margin: 0;
         padding: .5rem;
@@ -180,8 +181,8 @@ header {
     }
     @media (max-width: $phoneLandscape) {
       ul {
-        border-left: 1px solid $headerColor;
-        background: rgba($headerColor, 35%);
+        border-left: 1px solid $primary;
+        background: rgba($primary, 35%);
         backdrop-filter: blur(1rem);
         flex-direction: column;
         justify-content: start;

@@ -37,6 +37,7 @@ export default defineComponent({
 
 <style lang="scss">
 @import '@/assets/scss/vars';
+@import '@/assets/scss/colors';
 html,
 body {
   width: 100%;
@@ -47,14 +48,14 @@ body {
   overflow-x: hidden;
   overflow-y: scroll;
   box-sizing: border-box;
-  background-color: $bgColor;
+  background-color: $bg;
 }
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: $fontColor;
+  color: $font;
 }
 
 main {

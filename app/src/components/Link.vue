@@ -50,7 +50,7 @@ export default defineComponent({
 });
 </script>
 <style lang="scss" scoped>
-@import '@/assets/scss/vars.scss';
+@import '@/assets/scss/colors.scss';
 .router-link-active {
   font-weight: bold;
   text-decoration: underline !important;
@@ -58,7 +58,7 @@ export default defineComponent({
 li {
   a {
     text-decoration: none;
-    color: $navFontColor;
+    color: $link;
     &:hover {
       text-decoration: underline;
     }

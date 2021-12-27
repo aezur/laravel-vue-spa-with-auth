@@ -1,15 +1,23 @@
 <template>
-  <label v-if="$attrs.label" :for="$attrs.id">{{ $attrs.label }}</label>
+  <label
+    v-if="$attrs.label"
+    :for="$attrs.id"
+  >
+    {{ $attrs.label }}
+  </label>
   <input
     :id="$attrs.id"
-    :style="$attrs.errors?'margin:0;':''"
+    v-model="inputValue"
     :type="$attrs.type"
     :placeholder="$attrs.placeholder"
-    v-model="inputValue"
-  />
+    :style="$attrs.errors?'margin:0;':''"
+  >
   <div v-if="$attrs.errors">
-    <small v-for="error in $attrs.errors" :key="error">
-      {{error}}
+    <small
+      v-for="error in $attrs.errors"
+      :key="error"
+    >
+      {{ error }}
     </small>
   </div>
 </template>
@@ -18,14 +26,17 @@
 import {defineComponent} from 'vue';
 export default defineComponent({
   props: {
-    modelValue: String,
+    modelValue: {
+      type: String,
+      default: () => '',
+    },
   },
+  emits: ['update:modelValue'],
   data() {
     return {
       inputValue: this.modelValue,
     };
   },
-  emits: ['update:modelValue'],
   watch: {
     inputValue() {
       this.$emit('update:modelValue', this.inputValue);
@@ -35,8 +46,8 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/scss/vars.scss';
+@import '@/assets/scss/colors.scss';
 small {
-  color: $errorFontColor;
+  color: $danger;
 }
 </style>

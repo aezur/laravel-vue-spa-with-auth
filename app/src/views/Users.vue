@@ -1,28 +1,47 @@
 <template>
-<div class="users">
-  <div class="user"
-    v-for="user in $store.getters['admin/users']"
-    :key="user">
-    <div>
-      <label for="name"><b>Name: </b></label>
-      <p id="name">{{ user.name }}</p>
-      <label for="email"><b>Email: </b></label>
-      <p id="email">{{ user.email }}</p>
+  <div class="users">
+    <div
+      v-for="user in $store.getters['admin/users']"
+      :key="user"
+      class="user"
+    >
+      <div>
+        <label for="name">
+          <b>Name: </b>
+        </label>
+        <p id="name">
+          {{ user.name }}
+        </p>
+        <label for="email">
+          <b>Email: </b>
+        </label>
+        <p id="email">
+          {{ user.email }}
+        </p>
+      </div>
+      <div>      
+        <label for="name">
+          <b>Verified: </b>
+        </label>
+        <p id="verified">
+          {{ parseTimestamp(user.verified) }}
+        </p>
+        <label for="admin">
+          <b>Admin: </b>
+        </label>
+        <p id="admin">
+          {{ user.isAdmin }}
+        </p>
+      </div>
     </div>
-    <div>      
-      <label for="name"><b>Verified: </b></label>
-      <p id="verified">{{ parseTimestamp(user.verified) }}</p>
-      <label for="admin"><b>Admin: </b></label>
-      <p id="admin">{{ user.isAdmin }}</p>
-    </div>
+    <BasePagination
+      v-if="$store.getters['admin/links']"
+      path="/users"
+      :meta="$store.getters['admin/meta']"
+      :links="$store.getters['admin/links']"
+      action="admin/paginateUsers"
+    />
   </div>
-  <BasePagination
-    v-if="$store.getters['admin/links']"
-    path="/users"
-    :meta="$store.getters['admin/meta']"
-    :links="$store.getters['admin/links']"
-    action="admin/paginateUsers" />
-</div>
 </template>
 
 <script lang="ts">
@@ -39,7 +58,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import '@/assets/scss/vars.scss';
+@import '@/assets/scss/colors.scss';
 .users {
   width: 100%;
   display: flex;
@@ -53,8 +72,8 @@ export default defineComponent({
     grid-column-gap: 20px;
     grid-row-gap: 20px;
     margin-bottom: 2rem;
-    border: 1px solid $fontColor;
-    background-color: $uiColor;
+    border: 1px solid $font;
+    background-color: $ui;
     &:first-of-type {
       margin-top: 3rem;
     }

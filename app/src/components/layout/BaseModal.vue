@@ -1,15 +1,15 @@
 <template>
-<teleport to="nav">
-  <div class="modal">
-    <div class="wrapper">
-      <h1>{{title}}</h1>
-      <p>{{text}}</p>
-      <button @click="closeModal">
-        Close
-      </button>
+  <teleport to="nav">
+    <div class="modal">
+      <div class="wrapper">
+        <h1>{{ title }}</h1>
+        <p>{{ text }}</p>
+        <button @click="closeModal">
+          Close
+        </button>
+      </div>
     </div>
-  </div>
-</teleport>
+  </teleport>
 </template>
 
 <script lang="ts">
@@ -28,7 +28,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/scss/vars.scss';
+@import '@/assets/scss/colors.scss';
 .modal {
   position: absolute;
   display: flex;
@@ -45,7 +45,7 @@ export default defineComponent({
     h1 {
       margin: 0;
     }
-    background-color: $uiColor;
+    background-color: $ui;
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -1,16 +1,15 @@
 <template>
-<teleport to="nav">
-  <div class="loader">
-    <div class="wrapper">
-      <span class="spinner"></span>
+  <teleport to="nav">
+    <div class="loader">
+      <div class="wrapper">
+        <span class="spinner" />
+      </div>
     </div>
-  </div>
-</teleport>
+  </teleport>
 </template>
 
 <style lang="scss" scoped>
-@import '@/assets/scss/vars.scss';
-
+@import '@/assets/scss/colors.scss';
 .loader {
   position: absolute;
   display: flex;
@@ -22,19 +21,19 @@
   min-height: 100vh;
   z-index: 9999;
   .wrapper {
-    background-color: $uiColor;
+    background-color: $ui;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 5rem;
     aspect-ratio: 1;
-    border: solid 2px $fontColor;
+    border: solid 2px $font;
     .spinner::before {
-      background-color: $uiColor;
+      background-color: $ui;
       animation: 1.5s linear infinite spinner;
       animation-play-state: inherit;
-      border: solid 5px $fontColor;
-      border-bottom-color: $navFontColor;
+      border: solid 5px $font;
+      border-bottom-color: $secondary;
       border-radius: 50%;
       content: "";
       height: 3rem;
