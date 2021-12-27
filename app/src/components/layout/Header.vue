@@ -16,10 +16,10 @@
 
       <ul :class="menuIsOpen ? '' : 'hide-menu'">
         <div class="branding">
-          <img
+          <fa-icon
+            icon="city"
             class="logo"
-            src="@/assets/logo.png"
-          >
+          />
           <p v-if="title">
             {{ title }}
           </p>
