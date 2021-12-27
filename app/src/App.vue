@@ -11,7 +11,7 @@
     :message="$store.getters['ui/message']"
     :error="$store.getters['ui/error']"
   />
-  <BaseModal v-if="showModal" />
+  <Modal v-if="showModal" />
   <Loader v-if="showLoader" />
 </template>
 
@@ -20,10 +20,10 @@ import { computed, defineComponent } from 'vue';
 import { useStore } from 'vuex';
 import Header from '@/components/layout/Header.vue';
 import FlashMessage from '@/components/layout/FlashMessage.vue';
-import BaseModal from '@/components/layout/BaseModal.vue';
+import Modal from '@/components/layout/Modal.vue';
 import Loader from '@/components/layout/Loader.vue';
 export default defineComponent({
-  components: { Header, FlashMessage, BaseModal, Loader },
+  components: { Header, FlashMessage, Modal, Loader },
   setup() {
     const store = useStore();
     return {
