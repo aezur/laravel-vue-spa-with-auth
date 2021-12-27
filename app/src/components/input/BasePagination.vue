@@ -1,31 +1,31 @@
 <template>
   <div>
-    <button
+    <BaseButton
       :disabled="meta.total===1||meta.current_page===1"
       @click="changePage(links.first)"
     >
       First
-    </button>
-    <button
+    </BaseButton>
+    <BaseButton
       :disabled="!links.prev"
       @click="changePage(links.prev)"
     >
       Prev
-    </button>
-    <button 
+    </BaseButton>
+    <BaseButton 
       :disabled="!links.next"
       @click="changePage(links.next)" 
     >
       Next
-    </button>
-    <button 
+    </BaseButton>
+    <BaseButton 
       :disabled="meta.total===1||meta.current_page===meta.last_page"
       @click="changePage(links.last)"
     >
       Last
-    </button>
+    </BaseButton>
   </div>
-  <div class="info">
+  <div>
     <p>Showing {{ meta.from }} to {{ meta.to }} of {{ meta.total }}</p>
     <p>Page {{ meta.current_page }} of {{ meta.last_page }}</p>
   </div>
@@ -34,7 +34,9 @@
 import { defineComponent, computed } from 'vue';
 import { useRoute, RouteLocation } from 'vue-router';
 import { useStore } from 'vuex';
+import BaseButton from '@/components/input/BaseButton.vue';
 export default defineComponent({
+  components: { BaseButton },
   props: {
     meta: {
       type: Object,
@@ -102,11 +104,12 @@ export default defineComponent({
   },
 });
 </script>
-
 <style lang="scss" scoped>
-.info {
+div {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: min(400px, 100%);
 }
 </style>
