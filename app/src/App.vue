@@ -11,8 +11,8 @@
     :message="$store.getters['ui/message']"
     :error="$store.getters['ui/error']"
   />
-  <BaseModal v-if="showModal"></BaseModal>
-  <Loader v-if="showLoader"></Loader>
+  <BaseModal v-if="showModal" />
+  <Loader v-if="showLoader" />
 </template>
 
 <script lang="ts">
@@ -60,10 +60,10 @@ main {
   display: flex;
   flex-direction: column;
   @media (max-width: $phonePortrait) {
-    padding: 0 1rem;
+    padding: 1rem;
   }
   @media (min-width: $phonePortrait) {
-    padding: 0 5rem;
+    padding: 2rem 5rem;
   }
   @media (min-width: $phoneLandscape) {
     input {
