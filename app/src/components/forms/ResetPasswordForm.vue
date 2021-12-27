@@ -1,20 +1,20 @@
 <template>
   <form @submit.prevent="resetPassword">
-    <BaseInput
+    <Input
       id="email"
       v-model="email"
       type="email"
       label="Email"
       :errors="errors?.email"
     />
-    <BaseInput
+    <Input
       id="password"
       v-model="password"
       type="password"
       label="New Password"
       :errors="errors?.password"
     />
-    <BaseInput
+    <Input
       id="password_confirmation"
       v-model="password_confirmation"
       type="password"
@@ -29,13 +29,13 @@
 
 <script lang="ts">
 import AuthService from '@/services/AuthService';
-import BaseInput from '@/components/input/BaseInput.vue';
+import Input from '@/components/input/Input.vue';
 import Button from '@/components/input/Button.vue';
 import { defineComponent } from 'vue';
 import { getError } from '@/utils/helpers';
 
 export default defineComponent({
-  components: { BaseInput, Button },
+  components: { Input, Button },
   data(): {
       password_confirmation: string,
       password: string,

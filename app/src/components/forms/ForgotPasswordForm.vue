@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="requestReset">
-    <BaseInput
+    <Input
       id="email"
       v-model="email"
       type="email"
@@ -14,13 +14,13 @@
 </template>
 <script lang="ts">
 import AuthService from '@/services/AuthService';
-import BaseInput from '@/components/input/BaseInput.vue';
+import Input from '@/components/input/Input.vue';
 import Button from '@/components/input/Button.vue';
 import {defineComponent} from 'vue';
 import {getError} from '@/utils/helpers';
 export default defineComponent({
   components: {
-    BaseInput,
+    Input,
     Button,
   },
   data(): {

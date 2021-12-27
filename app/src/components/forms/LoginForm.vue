@@ -1,13 +1,13 @@
 <template>
   <form @submit.prevent="login">
-    <BaseInput
+    <Input
       id="email"
       v-model="email"
       type="email"
       label="Email"
       :errors="errors?.email"
     />
-    <BaseInput
+    <Input
       id="password"
       v-model="password"
       type="password"
@@ -21,13 +21,13 @@
 </template>
 <script lang="ts">
 import AuthService from '@/services/AuthService';
-import BaseInput from '@/components/input/BaseInput.vue';
+import Input from '@/components/input/Input.vue';
 import Button from '@/components/input/Button.vue';
 import { defineComponent } from 'vue';
 import { getError } from '@/utils/helpers';
 
 export default defineComponent({
-  components: { BaseInput, Button },
+  components: { Input, Button },
   data(): {
     email: string,
     password: string,
