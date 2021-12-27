@@ -14,19 +14,20 @@
       label="Password"
       :errors="errors?.password"
     />
-    <button type="submit">
+    <BaseButton type="submit">
       Login
-    </button>
+    </BaseButton>
   </form>
 </template>
 <script lang="ts">
 import AuthService from '@/services/AuthService';
 import BaseInput from '@/components/input/BaseInput.vue';
+import BaseButton from '@/components/input/BaseButton.vue';
 import { defineComponent } from 'vue';
 import { getError } from '@/utils/helpers';
 
 export default defineComponent({
-  components: { BaseInput },
+  components: { BaseInput, BaseButton },
   data(): {
     email: string,
     password: string,
