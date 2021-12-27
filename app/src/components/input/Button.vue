@@ -27,6 +27,7 @@ button {
   border-radius: .25rem;
   &:hover,:focus {
     background-color: $primary-light;
+    color: $font;
   }
   &:active {
     background-color: $primary-dark;
