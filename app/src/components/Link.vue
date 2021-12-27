@@ -59,6 +59,9 @@ li {
   a {
     text-decoration: none;
     color: $navFontColor;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 </style>

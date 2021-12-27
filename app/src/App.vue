@@ -1,5 +1,5 @@
 <template>
-  <Header />
+  <Header :title="appName" />
   <body>
     <main>
       <router-view />
@@ -29,6 +29,7 @@ export default defineComponent({
     return {
       showModal: computed(() => store.getters['ui/modalIsOpen']),
       showLoader: computed(() => store.getters['ui/loading']),
+      appName: computed(() => process.env.VUE_APP_NAME || ''),
     };
   },
 });
@@ -63,13 +64,14 @@ main {
     padding: 1rem;
   }
   @media (min-width: $phonePortrait) {
-    padding: 2rem 5rem;
+    padding: 3rem 2rem;
   }
   @media (min-width: $phoneLandscape) {
     input {
       min-width: min(400px, 80vw);
     }
     align-items: center;
+    padding: 1rem;
   }
 }
 

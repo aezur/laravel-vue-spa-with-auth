@@ -1,9 +1,5 @@
 <template>
   <header>
-    <img
-      class="logo"
-      src="@/assets/logo.png"
-    >
     <nav id="nav">
       <img
         v-if="menuIsOpen"
@@ -19,6 +15,15 @@
       >
 
       <ul :class="menuIsOpen ? '' : 'hide-menu'">
+        <div class="branding">
+          <img
+            class="logo"
+            src="@/assets/logo.png"
+          >
+          <p v-if="title">
+            {{ title }}
+          </p>
+        </div>
         <Link
           text="Login" 
           path="/login" 
@@ -67,6 +72,12 @@ import { useStore } from "vuex";
 import Link from '@/components/Link.vue';
 export default defineComponent({
   components: { Link },
+  props: {
+    title: {
+      type: String,
+      default: () => '',
+    },
+  },
   setup() {
     const store = useStore();
     return {
@@ -96,19 +107,43 @@ header {
   position: sticky;
 	top: 0;
 	width: 100%;
+  .branding {
+    position: absolute;
+    left: 0;
+    display: flex;
+    flex-basis: 1;
+    align-items: center;
+    p {
+      margin: 0;
+      color: $navFontColor;
+      font-weight: bold;
+    }
+    .logo {
+      width: 1.5rem;
+      height: 1.5rem;
+      margin: 0.5rem;
+      @media (max-width: $phoneLandscape) {
+        margin: 1rem;
+      }
+    }
+  }
+  @media (max-width: $phoneLandscape) {
+    .branding {
+      position: relative;
+      flex-direction: column;
+      p {
+        font-size: 1.5rem;
+      }
+      .logo {
+        margin: 1rem 0 0 0;
+      }
+    }
+  }
   .logout {
     margin: 0;
     color: $navFontColor;
-  }
-  .logo {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 1.5rem;
-    height: 1.5rem;
-    margin: 0.5rem;
-    @media (max-width: $phoneLandscape) {
-      margin: 1rem;
+    &:hover {
+      text-decoration: underline;
     }
   }
   @media (max-width: $phoneLandscape) {
@@ -145,15 +180,15 @@ header {
     }
     @media (max-width: $phoneLandscape) {
       ul {
-        border-left: 1px solid darkcyan;
-        background: hsl(0 0% 70% / 0.1);
+        border-left: 1px solid $headerColor;
+        background: rgba($headerColor, 35%);
         backdrop-filter: blur(1rem);
         flex-direction: column;
         justify-content: start;
         position: fixed;
         inset: 0 0 0 30%;
         margin: 0;
-        padding: 5rem 0 0 0;
+        font-weight: bold;
         li:last-of-type {
           margin-right: 0;
         }
