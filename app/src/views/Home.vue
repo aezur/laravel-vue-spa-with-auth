@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <p v-if="$props?.query?.verified">
+    <p v-if="query">
       Thanks for verifying your email!
     </p>
     <button @click="openModal">
@@ -28,15 +28,19 @@ export default defineComponent({
     ImageAsset,
   },
   props: {
-    query: {
+    verified: {
       type: String,
       default: () => '',
     },
   },
   computed: {
     avatar() {
-      return this.$store.getters['auth/authUser'].avatar;
-    }
+      return this.$store.getters['auth/authUser']?.avatar;
+    },
+    query(): Boolean {
+      return this.verified ?
+        !!this.verified : false;
+    },
   },
   methods: {
     openModal() {

@@ -46,7 +46,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/home',
     name: 'home',
-    props: route => ({ query: route.query }),
+    props: route => ({ verified: route.query.verified }),
     component: () => import(/* webpackChunkName: "common" */ '@/views/Home.vue'),
     meta: { middleware: [AuthGuard] },
   },
