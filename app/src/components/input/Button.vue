@@ -34,6 +34,7 @@ button {
   background-color: $primary;
   &:hover,:focus {
     background-color: $primary-light;
+    color: $secondary-dark;
   }
   &:active {
     background-color: $primary-dark;
@@ -43,6 +44,7 @@ button {
   background-color: $secondary;
   &:hover,:focus {
     background-color: $secondary-light;
+    color: $primary-dark;
   }
   &:active {
     background-color: $secondary-dark;

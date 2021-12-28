@@ -6,7 +6,7 @@ $secondary: #6200EE;
 $secondary-light: lighten($secondary, 10%);
 $secondary-dark: darken($secondary, 10%);
 
-$success: #5cc533;
+$success: darken(#5cc533, 10%);
 $success-light: lighten($success, 10%);
 $success-dark: darken($success, 10%);
 
