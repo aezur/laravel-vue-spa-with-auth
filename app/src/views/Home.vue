@@ -22,7 +22,7 @@
 import {defineComponent} from 'vue';
 import FileUpload from '@/components/input/FileUpload.vue';
 import Button from '@/components/input/Button.vue';
-import ImageAsset from '@/components/ImageAsset.vue';
+import ImageAsset from '@/components/images/ImageAsset.vue';
 export default defineComponent({
   components: {
     FileUpload,
