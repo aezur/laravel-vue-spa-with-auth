@@ -2,18 +2,18 @@
   <RegistrationForm />
   <div>
     <span>Already have an account? </span>
-    <router-link to="/login">
-      Login!
-    </router-link>
+    <Link path="/login" text="Login!" />
   </div>
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
+import { defineComponent } from 'vue';
 import RegistrationForm from '@/components/forms/RegistrationForm.vue';
+import Link from '@/components/links/Link.vue';
 export default defineComponent({
   components: {
     RegistrationForm,
+    Link,
   }
 });
 </script>
