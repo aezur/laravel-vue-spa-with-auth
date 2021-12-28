@@ -24,31 +24,31 @@
             {{ title }}
           </p>
         </div>
-        <Link
+        <NavLink
           text="Login" 
           path="/login" 
           :open="true"
           @click="closeMenu"
         />
-        <Link
+        <NavLink
           text="Register" 
           path="/register" 
           :open="true"
           @click="closeMenu"
         />
-        <Link
+        <NavLink
           text="Home" 
           path="/home" 
           :auth="true"
           @click="closeMenu"
         />
-        <Link
+        <NavLink
           text="About" 
           path="/about" 
           :auth="true"
           @click="closeMenu"
         />
-        <Link
+        <NavLink
           text="Users" 
           path="/users" 
           :admin="true"
@@ -69,9 +69,9 @@
 <script lang="ts">
 import { defineComponent, computed } from "vue";
 import { useStore } from "vuex";
-import Link from '@/components/Link.vue';
+import NavLink from '@/components/links/NavLink.vue';
 export default defineComponent({
-  components: { Link },
+  components: { NavLink },
   props: {
     title: {
       type: String,

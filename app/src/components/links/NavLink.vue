@@ -6,19 +6,19 @@
   </li>
 </template>
 <script lang="ts">
-import { defineComponent, computed } from 'vue';
-import { useStore } from 'vuex';
+import { defineComponent, computed } from "vue";
+import { useStore } from "vuex";
 export default defineComponent({
   props: {
     text: {
       type: String,
       required: true,
-      default: () => '',
+      default: () => "",
     },
     path: {
       type: String,
       required: true,
-      default: () => '',
+      default: () => "",
     },
     open: {
       type: Boolean,
@@ -36,21 +36,23 @@ export default defineComponent({
   setup() {
     const store = useStore();
     return {
-      loggedIn: computed(() => store.getters['auth/loggedIn']),
-      isAdmin: computed(() => store.getters['auth/isAdmin']),
-    }
+      loggedIn: computed(() => store.getters["auth/loggedIn"]),
+      isAdmin: computed(() => store.getters["auth/isAdmin"]),
+    };
   },
   computed: {
     showLink() {
-      return (this.open && !this.loggedIn) ||
+      return (
+        (this.open && !this.loggedIn) ||
         (this.auth && this.loggedIn) ||
         (this.admin && this.loggedIn && this.isAdmin)
-    }
+      );
+    },
   },
 });
 </script>
 <style lang="scss" scoped>
-@import '@/assets/scss/colors.scss';
+@import "@/assets/scss/colors.scss";
 .router-link-active {
   font-weight: bold;
   text-decoration: underline !important;
